@@ -23,7 +23,3 @@ import (
 func IsPodInTerminatedState(pod *corev1.Pod) bool {
 	return pod.Status.Phase == corev1.PodFailed || pod.Status.Phase == corev1.PodSucceeded
 }
-
-func AllContainersCreated(pod *corev1.Pod) bool {
-	return len(pod.Status.ContainerStatuses) >= len(pod.Spec.Containers)
-}

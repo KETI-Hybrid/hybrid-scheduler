@@ -19,8 +19,6 @@ package scheduler
 import (
 	"sync"
 
-	"hybrid-scheduler/pkg/util"
-
 	corev1 "k8s.io/api/core/v1"
 	k8stypes "k8s.io/apimachinery/pkg/types"
 	"k8s.io/klog/v2"
@@ -43,7 +41,7 @@ func (m *podManager) init() {
 	m.pods = make(map[k8stypes.UID]*podInfo)
 }
 
-func (m *podManager) addPod(pod *corev1.Pod, nodeID string, devices util.PodDevices) {
+func (m *podManager) addPod(pod *corev1.Pod, nodeID string) {
 	m.mutex.Lock()
 	defer m.mutex.Unlock()
 	_, ok := m.pods[pod.UID]

@@ -18,33 +18,11 @@ package scheduler
 
 import (
 	"fmt"
-	"strings"
 	"sync"
-
-	"hybrid-scheduler/pkg/util"
-
-	"k8s.io/klog/v2"
 )
 
-type DeviceInfo struct {
-	ID      string
-	Index   uint
-	Count   int32
-	Devmem  int32
-	Devcore int32
-	Type    string
-	Health  bool
-}
-
 type NodeInfo struct {
-	ID      string
-	Devices []DeviceInfo
-}
-
-type DeviceUsageList []*util.DeviceUsage
-
-type NodeUsage struct {
-	Devices DeviceUsageList
+	ID string
 }
 
 type nodeManager struct {
@@ -57,47 +35,12 @@ func (m *nodeManager) init() {
 }
 
 func (m *nodeManager) addNode(nodeID string, nodeInfo *NodeInfo) {
-	if nodeInfo == nil || len(nodeInfo.Devices) == 0 {
+	if nodeInfo == nil {
 		return
 	}
 	m.mutex.Lock()
 	defer m.mutex.Unlock()
-	_, ok := m.nodes[nodeID]
-	if ok {
-		tmp := make([]DeviceInfo, 0, len(m.nodes[nodeID].Devices)+len(nodeInfo.Devices))
-		tmp = append(tmp, m.nodes[nodeID].Devices...)
-		tmp = append(tmp, nodeInfo.Devices...)
-		m.nodes[nodeID].Devices = tmp
-	} else {
-		m.nodes[nodeID] = nodeInfo
-	}
-}
-
-func (m *nodeManager) rmNodeDevice(nodeID string, nodeInfo *NodeInfo) {
-	m.mutex.Lock()
-	defer m.mutex.Unlock()
-	_, ok := m.nodes[nodeID]
-	if ok {
-		if m.nodes[nodeID].Devices == nil || len(m.nodes[nodeID].Devices) == 0 {
-			return
-		}
-		klog.Infoln("before rm:", m.nodes[nodeID].Devices, "needs remove", nodeInfo.Devices)
-		tmp := make([]DeviceInfo, 0, len(m.nodes[nodeID].Devices)-len(nodeInfo.Devices))
-		for _, val := range m.nodes[nodeID].Devices {
-			found := false
-			for _, rmval := range nodeInfo.Devices {
-				if strings.Compare(val.ID, rmval.ID) == 0 {
-					found = true
-					break
-				}
-			}
-			if !found && len(val.ID) > 0 {
-				tmp = append(tmp, val)
-			}
-		}
-		m.nodes[nodeID].Devices = tmp
-		klog.Infoln("Rm Devices res:", m.nodes[nodeID].Devices)
-	}
+	m.nodes[nodeID] = nodeInfo
 }
 
 func (m *nodeManager) GetNode(nodeID string) (*NodeInfo, error) {
