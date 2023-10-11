@@ -23,4 +23,4 @@
 
 
 
-kubectl delete -f /root/workspace/hth/dev/metric-collector/deploy
+kubectl create -f /root/workspace/hth/dev/hybrid-scheduler/deploy/scheduler
