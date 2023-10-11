@@ -7,11 +7,9 @@ import (
 )
 
 func (a *AlgoManager) NodePorts(args extenderv1.ExtenderArgs) (*extenderv1.ExtenderFilterResult, error) {
-	nodeName := ""
 	fmt.Printf("pod add -> name : %s\n", args.Pod.Name)
 	fmt.Println("** NodePorts Algorithm **")
+	fmt.Printf("Selected Node(s) : %s\n", *args.NodeNames)
 
-	fmt.Printf("Selected Node(s) : %s\n", nodeName)
-
-	return nil, nil
+	return &extenderv1.ExtenderFilterResult{NodeNames: args.NodeNames}, nil
 }

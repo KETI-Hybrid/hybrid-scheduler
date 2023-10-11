@@ -7,11 +7,11 @@ import (
 )
 
 func (a *AlgoManager) NodeName(args extenderv1.ExtenderArgs) (*extenderv1.ExtenderFilterResult, error) {
-	nodeName := ""
+	nodeName := args.Pod.Spec.NodeName
 	fmt.Printf("pod add -> name : %s\n", args.Pod.Name)
 	fmt.Println("** NodeName Algorithm **")
 
 	fmt.Printf("Selected Node(s) : %s\n", nodeName)
 
-	return nil, nil
+	return &extenderv1.ExtenderFilterResult{NodeNames: &[]string{nodeName}}, nil
 }

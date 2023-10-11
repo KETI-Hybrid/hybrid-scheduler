@@ -3,6 +3,7 @@ package algorithms
 import (
 	"hybrid-scheduler/pkg/util/client"
 
+	keticlient "github.com/KETI-Hybrid/keti-controller/client"
 	"k8s.io/client-go/kubernetes"
 	"k8s.io/klog"
 	extenderv1 "k8s.io/kube-scheduler/extender/v1"
@@ -10,6 +11,7 @@ import (
 
 type AlgoManager struct {
 	kubeClient kubernetes.Interface
+	ketiClient keticlient.Interface
 	algoMap    map[string]Algorithms
 }
 type Algorithms func(args extenderv1.ExtenderArgs) (*extenderv1.ExtenderFilterResult, error)
@@ -41,8 +43,13 @@ func InitAlgoManager() *AlgoManager {
 	if err != nil {
 		klog.Fatal(err)
 	}
+	ketiClient, err := client.NewKETIClient()
+	if err != nil {
+		klog.Fatal(err)
+	}
 	a := &AlgoManager{}
 	a.kubeClient = kubeClient
+	a.ketiClient = ketiClient
 	a.algoMap["drf"] = a.DRF
 	a.algoMap["noderegion"] = a.NodeRegion
 	a.algoMap["optimizationcount"] = a.OptimizationCount
