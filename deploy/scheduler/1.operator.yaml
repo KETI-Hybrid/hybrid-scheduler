@@ -1,0 +1,131 @@
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: hybrid-scheduler
+  namespace: keti-system
+---
+kind: ClusterRoleBinding
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: hybrid-scheduler
+  namespace: keti-system
+subjects:
+- kind: ServiceAccount
+  name: hybrid-scheduler
+  namespace: keti-system
+roleRef:
+  kind: ClusterRole
+  name: cluster-admin
+  apiGroup: rbac.authorization.k8s.io
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: hybrid-scheduler
+  namespace: keti-system
+  labels:
+    name: hybrid-scheduler
+data:
+  config.json: |
+    {
+        "kind": "Policy",
+        "apiVersion": "v1",
+        "extenders": [
+            {
+                "urlPrefix": "https://127.0.0.1:443",
+                "filterVerb": "filter",
+                "bindVerb": "bind",
+                "enableHttps": true,
+                "weight": 1,
+                "nodeCacheCapable": true,
+                "httpTimeout": 30000000000,
+                "tlsConfig": {
+                    "insecure": true
+                },
+                "ignoreable": false
+            }
+        ]
+    }
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: hybrid-scheduler
+  namespace: keti-system
+  labels:
+    name: hybrid-scheduler
+spec:
+  type: NodePort
+  ports:
+  - name: http
+    port: 443
+    targetPort: 443
+    nodePort: 31998
+    protocol: TCP
+  selector:
+    name: hybrid-scheduler
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hybrid-scheduler
+  namespace: keti-system
+  labels:
+    name: hybrid-scheduler
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: hybrid-scheduler
+  template:
+    metadata:
+      labels:
+        name: hybrid-scheduler
+    spec:
+      imagePullSecrets: 
+      - name: ketidevit2
+      serviceAccountName: hybrid-scheduler
+      priorityClassName: system-node-critical
+      containers:
+        - name: kube-scheduler
+          image: k8s.gcr.io/kube-scheduler:v1.17.17
+          imagePullPolicy: IfNotPresent
+          command:
+          - kube-scheduler
+          - --scheduler-name=hybrid-scheduler
+          - --policy-config-file=/config/config.json
+          - --leader-elect=false
+          - -v=4       
+          volumeMounts:
+            - name: scheduler-config
+              mountPath: /config
+        - name: hybrid-scheduler
+          image: ketidevit2/hybrid.hybrid-scheduler
+          imagePullPolicy: Always
+          command:
+          - scheduler
+          - --http_bind=0.0.0.0:443
+          - --cert_file=/tls/tls.crt
+          - --key_file=/tls/tls.key
+          - --scheduler-name=hybrid-scheduler
+          - --default-mem=0
+          - --default-cores=0
+          - --debug
+          - -v=4
+          ports:
+            - name: http
+              containerPort: 443
+              protocol: TCP
+          volumeMounts:
+            - name: tls-config
+              mountPath: /tls
+      volumes:
+        - name: tls-config
+          secret:
+            secretName: hybrid-scheduler-tls
+        - name: scheduler-config
+          configMap:
+            name: hybrid-scheduler
+
+
+

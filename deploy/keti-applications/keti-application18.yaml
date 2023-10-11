@@ -1,0 +1,25 @@
+#ScoreSpread: 노드의 자원 점수가 가장 낮은 노드 선택
+apiVersion: v1
+kind: Pod
+metadata:
+  name: keti-application18
+  annotation: 
+    schedulepolicy: scorespread
+  labels:
+    name: keti-application18
+spec:
+  imagePullSecrets: 
+  - name: ketidevit2
+  restartPolicy: Always
+  containers:
+  - name: keti-application18
+    image: ketidevit2/keti-application:latest
+    env:
+    - name: NODE_NAME
+      valueFrom:
+        fieldRef:
+          fieldPath: spec.nodeName
+    - name: POD_NAME
+      valueFrom:
+        fieldRef:
+          fieldPath: metadata.name

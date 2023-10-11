@@ -1,0 +1,25 @@
+#JoinCheck: 노드 조인 확인
+apiVersion: v1
+kind: Pod
+metadata:
+  name: keti-application9
+  annotation: 
+    schedulepolicy: joincheck
+  labels:
+    name: keti-application9
+spec:
+  imagePullSecrets: 
+  - name: ketidevit2
+  restartPolicy: Always
+  containers:
+  - name: keti-application9
+    image: ketidevit2/keti-application:latest
+    env:
+    - name: NODE_NAME
+      valueFrom:
+        fieldRef:
+          fieldPath: spec.nodeName
+    - name: POD_NAME
+      valueFrom:
+        fieldRef:
+          fieldPath: metadata.name

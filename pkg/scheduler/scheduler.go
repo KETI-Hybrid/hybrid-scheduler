@@ -163,22 +163,27 @@ func (s *Scheduler) Bind(args extenderv1.ExtenderBindingArgs) (*extenderv1.Exten
 func (s *Scheduler) Filter(args extenderv1.ExtenderArgs) (*extenderv1.ExtenderFilterResult, error) {
 	klog.Infof("schedule pod %v/%v[%v]", args.Pod.Namespace, args.Pod.Name, args.Pod.UID)
 	s.delPod(args.Pod)
-
+	res := &extenderv1.ExtenderFilterResult{}
+	var err error
 	if algoName, ok := args.Pod.Annotations["schedulepolicy"]; ok {
 		algoName = strings.ToLower(algoName)
-		return s.Do(algoName, args)
-	} else {
-		nodeScores := getScore()
-		nodeID, minScore := "", float32(3.4e+38)
-		for nodeName, score := range nodeScores {
-			if score < float32(minScore) {
-				minScore = score
-				nodeID = nodeName
-			}
+		res, err = s.Do(algoName, args)
+		if err != nil {
+			klog.Errorln(err)
 		}
-		klog.Infof("schedule %v/%v to %v", args.Pod.Namespace, args.Pod.Name, nodeID)
-		s.addPod(args.Pod, nodeID)
-		res := extenderv1.ExtenderFilterResult{NodeNames: &[]string{nodeID}}
-		return &res, nil
 	}
+	nodeScores := getScore()
+	nodeID, minScore := "", float32(3.4e+38)
+	for _, nodeName := range *res.NodeNames {
+		score := nodeScores[nodeName]
+		if score < float32(minScore) {
+			minScore = score
+			nodeID = nodeName
+		}
+	}
+	klog.Infof("schedule %v/%v to %v", args.Pod.Namespace, args.Pod.Name, nodeID)
+	s.addPod(args.Pod, nodeID)
+	res = &extenderv1.ExtenderFilterResult{NodeNames: &[]string{nodeID}}
+	return res, nil
+
 }
