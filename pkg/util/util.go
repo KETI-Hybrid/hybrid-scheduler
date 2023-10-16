@@ -19,6 +19,8 @@ package util
 import (
 	"context"
 	"encoding/json"
+	"flag"
+	"os"
 
 	"hybrid-scheduler/pkg/util/client"
 
@@ -27,6 +29,8 @@ import (
 	k8stypes "k8s.io/apimachinery/pkg/types"
 	"k8s.io/klog/v2"
 )
+
+var DebugMode bool
 
 func PatchPodAnnotations(pod *v1.Pod, annotations map[string]string) error {
 	type patchMetadata struct {
@@ -50,4 +54,10 @@ func PatchPodAnnotations(pod *v1.Pod, annotations map[string]string) error {
 	}
 
 	return err
+}
+func GlobalFlagSet() *flag.FlagSet {
+	fs := flag.NewFlagSet(os.Args[0], flag.ExitOnError)
+	fs.BoolVar(&DebugMode, "debug", false, "debug mode")
+	klog.InitFlags(fs)
+	return fs
 }

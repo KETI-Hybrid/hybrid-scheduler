@@ -42,6 +42,7 @@ func (m *podManager) init() {
 }
 
 func (m *podManager) addPod(pod *corev1.Pod, nodeID string) {
+	klog.Infoln("addPod", pod.Name)
 	m.mutex.Lock()
 	defer m.mutex.Unlock()
 	_, ok := m.pods[pod.UID]

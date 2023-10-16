@@ -12,7 +12,7 @@ func (a *AlgoManager) OptimizationCount(args extenderv1.ExtenderArgs) (*extender
 	fmt.Println("** OptimizationCount Algorithm **")
 	nodeName, minCnt := "", 2147483647
 	for _, node := range args.Nodes.Items {
-		cntStr := node.Annotations["optimazationCount"]
+		cntStr := node.Annotations["optimazationCount"] //
 		cnt, _ := strconv.Atoi(cntStr)
 		if minCnt > cnt {
 			nodeName = node.Name

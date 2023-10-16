@@ -18,6 +18,7 @@ package main
 import (
 	"net/http"
 
+	"hybrid-scheduler/pkg/util"
 	"hybrid-scheduler/pkg/version"
 
 	"hybrid-scheduler/pkg/scheduler"
@@ -52,8 +53,7 @@ func init() {
 	rootCmd.Flags().StringVar(&tlsCertFile, "cert_file", "", "tls cert file")
 	rootCmd.Flags().StringVar(&tlsKeyFile, "key_file", "", "tls key file")
 	rootCmd.Flags().StringVar(&config.SchedulerName, "scheduler-name", "", "the name to be added to pod.spec.schedulerName if not empty")
-	rootCmd.Flags().Int32Var(&config.DefaultMem, "default-mem", 5000, "default gpu device memory to allocate")
-	rootCmd.Flags().Int32Var(&config.DefaultCores, "default-cores", 0, "default gpu core percentage to allocate")
+	rootCmd.PersistentFlags().AddGoFlagSet(util.GlobalFlagSet())
 	rootCmd.AddCommand(version.VersionCmd)
 }
 
@@ -61,17 +61,21 @@ func start() {
 	sher = scheduler.NewScheduler()
 	sher.Start()
 	defer sher.Stop()
+	go sher.RegisterFromNodeAnnotatons()
 
 	// start http server
 	router := httprouter.New()
 	router.POST("/filter", routes.PredicateRoute(sher))
 	router.POST("/bind", routes.Bind(sher))
-	klog.Info("listen on ", config.HttpBind)
+	router.POST("/webhook", routes.WebHookRoute())
+	//klog.Info("listen on ", config.HttpBind)
 	if len(tlsCertFile) == 0 || len(tlsKeyFile) == 0 {
+		klog.Info("listen on HTTP ", config.HttpBind)
 		if err := http.ListenAndServe(config.HttpBind, router); err != nil {
 			klog.Fatal("Listen and Serve error, ", err)
 		}
 	} else {
+		klog.Info("listen on HTTPS TLS ", config.HttpBind)
 		if err := http.ListenAndServeTLS(config.HttpBind, tlsCertFile, tlsKeyFile, router); err != nil {
 			klog.Fatal("Listen and Serve error, ", err)
 		}

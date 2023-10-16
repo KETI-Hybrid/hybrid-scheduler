@@ -10,6 +10,7 @@ func (a *AlgoManager) DRF(args extenderv1.ExtenderArgs) (*extenderv1.ExtenderFil
 	nodeName := make([]string, 0)
 	fmt.Printf("pod add -> name : %s\n", args.Pod.Name)
 	fmt.Println("** DRF Algorithm **")
+	fmt.Println("Checking ")
 	cpuResource := int64(0)
 	memoryResource := int64(0)
 	storageResource := int64(0)

@@ -26,7 +26,6 @@ import (
 	"hybrid-scheduler/pkg/scheduler"
 
 	"github.com/julienschmidt/httprouter"
-	"k8s.io/apimachinery/pkg/types"
 	"k8s.io/klog/v2"
 	extenderv1 "k8s.io/kube-scheduler/extender/v1"
 )
@@ -76,10 +75,12 @@ func PredicateRoute(s *scheduler.Scheduler) httprouter.Handle {
 			w.WriteHeader(http.StatusOK)
 			w.Write(resultBody)
 		}
+		klog.Infoln("Out Predicate Route inner func")
 	}
 }
 
 func Bind(s *scheduler.Scheduler) httprouter.Handle {
+	klog.Infoln("Into Bind outer func")
 	return func(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
 		var buf bytes.Buffer
 		body := io.TeeReader(r.Body, &buf)
@@ -110,14 +111,13 @@ func Bind(s *scheduler.Scheduler) httprouter.Handle {
 	}
 }
 
-func bind(args extenderv1.ExtenderBindingArgs, bindFunc func(string, string, types.UID, string) error) *extenderv1.ExtenderBindingResult {
-	err := bindFunc(args.PodName, args.PodNamespace, args.PodUID, args.Node)
-	errMsg := ""
+func WebHookRoute() httprouter.Handle {
+	h, err := scheduler.NewWebHook()
 	if err != nil {
-		klog.ErrorS(err, "Bind", "pod", args.PodName, "namespace", args.PodNamespace, "node", args.Node, "uid", args.PodUID)
-		errMsg = err.Error()
+		klog.Fatalf("new web hook error, %v", err)
 	}
-	return &extenderv1.ExtenderBindingResult{
-		Error: errMsg,
+	return func(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
+		klog.Infof("Into webhookfunc")
+		h.ServeHTTP(w, r)
 	}
 }

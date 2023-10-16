@@ -2,27 +2,90 @@ apiVersion: v1
 kind: ServiceAccount
 metadata:
   name: hybrid-scheduler
-  namespace: keti-system
+  namespace: kube-system
 ---
 kind: ClusterRoleBinding
 apiVersion: rbac.authorization.k8s.io/v1
 metadata:
   name: hybrid-scheduler
-  namespace: keti-system
+  namespace: kube-system
 subjects:
 - kind: ServiceAccount
   name: hybrid-scheduler
-  namespace: keti-system
+  namespace: kube-system
 roleRef:
   kind: ClusterRole
   name: cluster-admin
   apiGroup: rbac.authorization.k8s.io
 ---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: hybrid-scheduler
+  namespace: kube-system
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: Role
+  name: extension-apiserver-authentication-reader
+subjects:
+- kind: ServiceAccount
+  name: hybrid-scheduler
+  namespace: kube-system
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: hybrid-scheduler-newversion
+  namespace: kube-system
+  labels:
+   name: hybrid-scheduler-newversion
+data:
+  config.yaml: |
+    apiVersion: kubescheduler.config.k8s.io/v1beta2
+    kind: KubeSchedulerConfiguration
+    leaderElection:
+      leaderElect: false
+    profiles:
+    - schedulerName: hybrid-scheduler
+    extenders:
+    - urlPrefix: "https://hybrid-scheduler.kube-system.svc:443"
+      filterVerb: filter
+      bindVerb: bind
+      nodeCacheCapable: true
+      weight: 1
+      httpTimeout: 30s
+      enableHTTPS: true
+      tlsConfig:
+        insecure: true
+      managedResources:
+      - name: keti.hybrid/schedule
+        ignoredByScheduler: true
+  config.json: |
+    {
+        "kind": "Policy",
+        "apiVersion": "v1",
+        "extenders": [
+            {
+                "urlPrefix": "https://127.0.0.1:443",
+                "filterVerb": "filter",
+                "bindVerb": "bind",
+                "enableHttps": true,
+                "weight": 1,
+                "nodeCacheCapable": true,
+                "httpTimeout": 30000000000,
+                "tlsConfig": {
+                    "insecure": true
+                },
+                "ignoreable": false
+            }
+        ]
+    }
+---
 apiVersion: v1
 kind: ConfigMap
 metadata:
   name: hybrid-scheduler
-  namespace: keti-system
+  namespace: kube-system
   labels:
     name: hybrid-scheduler
 data:
@@ -47,18 +110,63 @@ data:
         ]
     }
 ---
+apiVersion: admissionregistration.k8s.io/v1
+kind: MutatingWebhookConfiguration
+metadata:
+  name: hybrid-scheduler
+  namespace: kube-system
+  labels:
+    name: hybrid-scheduler
+webhooks:
+  - admissionReviewVersions:
+    - v1beta1
+    clientConfig:
+      caBundle: LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSUJkakNDQVJ1Z0F3SUJBZ0lRUEZPdVRCeHhGSkFzQnlUQ2lYUy9LREFLQmdncWhrak9QUVFEQWpBUE1RMHcKQ3dZRFZRUUtFd1J1YVd3eE1DQVhEVEl6TVRBeE16QTJOVEUwTmxvWUR6SXhNak13T1RFNU1EWTFNVFEyV2pBUApNUTB3Q3dZRFZRUUtFd1J1YVd3eE1Ga3dFd1lIS29aSXpqMENBUVlJS29aSXpqMERBUWNEUWdBRWViK0lmWnV1CkZvNmdwTHpHZDQ1b3hCa3R6bE1YT3NrQkR4VzYyRGw5WG9tU3dJU2pGVVU3MWlXKzFwNkhGK1RBWjVIY3FqajIKVDRJc0EvWEdtMkwyVzZOWE1GVXdEZ1lEVlIwUEFRSC9CQVFEQWdJRU1CTUdBMVVkSlFRTU1Bb0dDQ3NHQVFVRgpCd01CTUE4R0ExVWRFd0VCL3dRRk1BTUJBZjh3SFFZRFZSME9CQllFRklMOW5MbXpqaW5EVHl4dkRLanVjdjVQCnRCN2lNQW9HQ0NxR1NNNDlCQU1DQTBrQU1FWUNJUURPM0d5Z2FpQnRwSm9xOEZTYXY3bmhmSWR1aDZWVlZvZG0KSnBVR29pWENxUUloQUlidjgxaDR6Y1BIYlFHN1dsZU1vdlhyZnFtU2wrNjRqdW1HSytHVCtTemgKLS0tLS1FTkQgQ0VSVElGSUNBVEUtLS0tLQo=
+      service:
+        name: hybrid-scheduler
+        namespace: kube-system
+        path: /webhook
+        port: 443
+    failurePolicy: Fail
+    matchPolicy: Equivalent
+    name: hybrid.keti.re
+    namespaceSelector:
+      matchExpressions:
+      - key: keti.hybrid/webhook
+        operator: NotIn
+        values:
+        - ignore
+    objectSelector:
+      matchExpressions:
+      - key: keti.hybrid/webhook
+        operator: NotIn
+        values:
+        - ignore
+    reinvocationPolicy: Never
+    rules:
+      - apiGroups:
+          - ""
+        apiVersions:
+          - v1
+        operations:
+          - CREATE
+        resources:
+          - pods
+        scope: '*'
+    sideEffects: None
+    timeoutSeconds: 10
+---
 apiVersion: v1
 kind: Service
 metadata:
   name: hybrid-scheduler
-  namespace: keti-system
+  namespace: kube-system
   labels:
     name: hybrid-scheduler
 spec:
   type: NodePort
   ports:
-  - name: http
-    port: 443
+  - port: 443
     targetPort: 443
     nodePort: 31998
     protocol: TCP
@@ -69,7 +177,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: hybrid-scheduler
-  namespace: keti-system
+  namespace: kube-system
   labels:
     name: hybrid-scheduler
 spec:
@@ -81,37 +189,44 @@ spec:
     metadata:
       labels:
         name: hybrid-scheduler
+        keti.hybrid/webhook: ignore
     spec:
+      nodeName: hcp-master
       imagePullSecrets: 
       - name: ketidevit2
       serviceAccountName: hybrid-scheduler
       priorityClassName: system-node-critical
       containers:
         - name: kube-scheduler
-          image: k8s.gcr.io/kube-scheduler:v1.17.17
+          image: registry.cn-hangzhou.aliyuncs.com/google_containers/kube-scheduler:v1.17.17
           imagePullPolicy: IfNotPresent
           command:
           - kube-scheduler
-          - --scheduler-name=hybrid-scheduler
+          #- --config=/config/config.yaml
           - --policy-config-file=/config/config.json
           - --leader-elect=false
+          - --scheduler-name=hybrid-scheduler
+          # - --kubeconfig=/etc/kubernetes/scheduler.conf
+          # - --authentication-kubeconfig=/etc/kubernetes/scheduler.conf
+          # - --authorization-kubeconfig=/etc/kubernetes/scheduler.conf
           - -v=4       
           volumeMounts:
-            - name: scheduler-config
-              mountPath: /config
+          - name: scheduler-config
+            mountPath: /config
+          # - mountPath: /etc/kubernetes/scheduler.conf
+          #   name: kubeconfig
+          #   readOnly: true
         - name: hybrid-scheduler
-          image: ketidevit2/hybrid.hybrid-scheduler
+          image: ketidevit2/hybrid.hybrid-scheduler:latest
           imagePullPolicy: Always
           command:
-          - scheduler
+          - /usr/local/bin/hybrid.hybrid-scheduler
           - --http_bind=0.0.0.0:443
           - --cert_file=/tls/tls.crt
           - --key_file=/tls/tls.key
           - --scheduler-name=hybrid-scheduler
-          - --default-mem=0
-          - --default-cores=0
           - --debug
-          - -v=4
+          - -v=5
           ports:
             - name: http
               containerPort: 443
@@ -120,12 +235,19 @@ spec:
             - name: tls-config
               mountPath: /tls
       volumes:
-        - name: tls-config
-          secret:
-            secretName: hybrid-scheduler-tls
-        - name: scheduler-config
-          configMap:
-            name: hybrid-scheduler
+      - name: tls-config
+        secret:
+          secretName: hybrid-scheduler-tls
+      - name: scheduler-config
+        configMap:
+          name: hybrid-scheduler-newversion
+      # - name: scheduler-config
+      #   configMap:
+      #     name: hybrid-scheduler
+      # - hostPath:
+      #     path: /etc/kubernetes/scheduler.conf
+      #     type: FileOrCreate
+      #     name: kubeconfig
 
 
 

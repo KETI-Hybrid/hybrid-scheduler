@@ -50,29 +50,70 @@ func InitAlgoManager() *AlgoManager {
 	a := &AlgoManager{}
 	a.kubeClient = kubeClient
 	a.ketiClient = ketiClient
-	a.algoMap["drf"] = a.DRF
-	a.algoMap["noderegion"] = a.NodeRegion
-	a.algoMap["optimizationcount"] = a.OptimizationCount
-	a.algoMap["affinity"] = a.Affinity
-	a.algoMap["locationaffinity"] = a.LocationAffinity
-	a.algoMap["nodename"] = a.NodeName
-	a.algoMap["nodeports"] = a.NodePorts
-	a.algoMap["nodeunschedulable"] = a.NodeUnschedulable
-	a.algoMap["joincheck"] = a.JoinCheck
-	a.algoMap["volumerestrictions"] = a.VolumeRestrictions
-	a.algoMap["imagelocality"] = a.ImageLocality
-	a.algoMap["optimizationtime"] = a.OptimizationTime
-	a.algoMap["nodepreferavoidpods"] = a.NodePreferAvoidPods
-	a.algoMap["selectspread"] = a.SelectSpread
-	a.algoMap["noderesourcefit"] = a.NodeResourceFit
-	a.algoMap["tainttoleration"] = a.TaintToleration
-	a.algoMap["volumebinding"] = a.VolumeBinding
-	a.algoMap["scorespread"] = a.ScoreSpread
-	a.algoMap["balanceallocation"] = a.BalanceAllocation
+	// a.algoMap = make(map[string]Algorithms)
+	// a.algoMap["drf"] = a.DRF
+	// a.algoMap["noderegion"] = a.NodeRegion
+	// a.algoMap["optimizationcount"] = a.OptimizationCount
+	// a.algoMap["affinity"] = a.Affinity
+	// a.algoMap["locationaffinity"] = a.LocationAffinity
+	// a.algoMap["nodename"] = a.NodeName
+	// a.algoMap["nodeports"] = a.NodePorts
+	// a.algoMap["nodeunschedulable"] = a.NodeUnschedulable
+	// a.algoMap["joincheck"] = a.JoinCheck
+	// a.algoMap["volumerestrictions"] = a.VolumeRestrictions
+	// a.algoMap["imagelocality"] = a.ImageLocality
+	// a.algoMap["optimizationtime"] = a.OptimizationTime
+	// a.algoMap["nodepreferavoidpods"] = a.NodePreferAvoidPods
+	// a.algoMap["selectspread"] = a.SelectSpread
+	// a.algoMap["noderesourcefit"] = a.NodeResourceFit
+	// a.algoMap["tainttoleration"] = a.TaintToleration
+	// a.algoMap["volumebinding"] = a.VolumeBinding
+	// a.algoMap["scorespread"] = a.ScoreSpread
+	// a.algoMap["balanceallocation"] = a.BalanceAllocation
 
 	return &AlgoManager{}
 }
 
 func (a *AlgoManager) Do(algoName string, args extenderv1.ExtenderArgs) (*extenderv1.ExtenderFilterResult, error) {
-	return a.algoMap[algoName](args)
+	switch algoName {
+	case "drf":
+		return a.DRF(args)
+	case "noderegion":
+		return a.NodeRegion(args)
+	case "optimizationcount":
+		return a.OptimizationCount(args)
+	case "affinity":
+		return a.Affinity(args)
+	case "locationaffinity":
+		return a.LocationAffinity(args)
+	case "nodename":
+		return a.NodeName(args)
+	case "nodeports":
+		return a.NodePorts(args)
+	case "nodeunschedulable":
+		return a.NodeUnschedulable(args)
+	case "joincheck":
+		return a.JoinCheck(args)
+	case "volumerestrictions":
+		return a.VolumeRestrictions(args)
+	case "imagelocality":
+		return a.ImageLocality(args)
+	case "optimizationtime":
+		return a.OptimizationTime(args)
+	case "nodepreferavoidpods":
+		return a.NodePreferAvoidPods(args)
+	case "selectspread":
+		return a.SelectSpread(args)
+	case "noderesourcefit":
+		return a.NodeResourceFit(args)
+	case "tainttoleration":
+		return a.TaintToleration(args)
+	case "volumebinding":
+		return a.VolumeBinding(args)
+	case "scorespread":
+		return a.ScoreSpread(args)
+	case "balanceallocation":
+		return a.BalanceAllocation(args)
+	}
+	return nil, nil
 }
