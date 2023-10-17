@@ -20,7 +20,7 @@ func (a *AlgoManager) ScoreSpread(args extenderv1.ExtenderArgs) (*extenderv1.Ext
 			minScore = score
 			nodeID = nodeName
 		}
-		fmt.Printf("%s : %d\n", nodeName, score)
+		fmt.Printf("%s : %.1f\n", nodeName, score)
 	}
 
 	fmt.Printf("Selected Node(s) : %s\n", nodeID)

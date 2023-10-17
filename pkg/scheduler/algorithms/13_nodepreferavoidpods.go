@@ -20,6 +20,7 @@ func (a *AlgoManager) NodePreferAvoidPods(args extenderv1.ExtenderArgs) (*extend
 		annos := node.Annotations
 
 		score = score - len(annos)
+		score = 0 - score
 
 		fmt.Println(node.Name, ":", score)
 

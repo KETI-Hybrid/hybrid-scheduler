@@ -3,7 +3,7 @@ apiVersion: v1
 kind: Pod
 metadata:
   name: keti-application12
-  annotation: 
+  annotations: 
     schedulepolicy: optimizationtime
   labels:
     name: keti-application12
@@ -23,3 +23,6 @@ spec:
       valueFrom:
         fieldRef:
           fieldPath: metadata.name
+    resources:
+      limits:
+        keti.hybrid/schedule: 1

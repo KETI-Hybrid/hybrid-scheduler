@@ -22,3 +22,5 @@ build/
 go.work
 go.sum
 
+docker/_output/bin/hybrid.hybrid-scheduler
+

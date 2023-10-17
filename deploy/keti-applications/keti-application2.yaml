@@ -3,10 +3,13 @@ apiVersion: v1
 kind: Pod
 metadata:
   name: keti-application2
-  annotation: 
+  annotations: 
     schedulepolicy: noderegion
+    zone: korea
+    region: asia
   labels:
     name: keti-application2
+    kind: deployment
 spec:
   imagePullSecrets: 
   - name: ketidevit2
@@ -23,3 +26,6 @@ spec:
       valueFrom:
         fieldRef:
           fieldPath: metadata.name
+    resources:
+      limits:
+        keti.hybrid/schedule: 1

@@ -20,7 +20,7 @@ func (a *AlgoManager) BalanceAllocation(args extenderv1.ExtenderArgs) (*extender
 		if select_node == "" {
 			select_node = nodeName
 		}
-		fmt.Printf("%s : %d\n", nodeName, score)
+		fmt.Printf("%s : %.1f\n", nodeName, score)
 
 	}
 

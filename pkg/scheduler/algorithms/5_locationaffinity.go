@@ -12,10 +12,13 @@ func (a *AlgoManager) LocationAffinity(args extenderv1.ExtenderArgs) (*extenderv
 	RegionNodeName := make([]string, 0)
 	fmt.Printf("pod add -> name : %s\n", args.Pod.Name)
 	fmt.Println("** LocationAffinity Algorithm **")
+	podLocation := args.Pod.Annotations["region"] + "/" + args.Pod.Annotations["zone"]
+	fmt.Printf("Pod location : %s\n", podLocation)
 	zone, region := "", ""
 	for _, node := range args.Nodes.Items {
 		zone = node.Annotations["zone"]
 		region = node.Annotations["region"]
+		fmt.Printf("%s : %s\n", node.Name, region+"/"+zone)
 		if strings.Compare(args.Pod.Annotations["region"], region) == 0 {
 			if strings.Compare(args.Pod.Annotations["zone"], zone) == 0 {
 				zoneNodeName = append(zoneNodeName, node.Name)

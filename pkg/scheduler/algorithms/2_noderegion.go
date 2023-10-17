@@ -19,10 +19,13 @@ func (a *AlgoManager) NodeRegion(args extenderv1.ExtenderArgs) (*extenderv1.Exte
 		if strings.Compare(args.Pod.Annotations["region"], region) == 0 {
 			if strings.Compare(args.Pod.Annotations["zone"], zone) == 0 {
 				zoneNodeName = append(zoneNodeName, node.Name)
+				fmt.Println("Duplicated pod : Exist")
 			} else {
 				RegionNodeName = append(RegionNodeName, node.Name)
+				fmt.Println("Duplicated pod : Exist")
 			}
 		} else {
+			fmt.Println("Duplicated pod : Not Exist")
 			continue
 		}
 	}

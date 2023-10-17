@@ -23,6 +23,15 @@ func (a *AlgoManager) NodePorts(args extenderv1.ExtenderArgs) (*extenderv1.Exten
 				portList = append(portList, strconv.Itoa(int(port.ContainerPort)))
 			}
 		}
+		fmt.Print("Pod request port : ")
+
+		for i, port := range portList {
+			if i == len(portList)-1 {
+				fmt.Printf("%s\n", port)
+			} else {
+				fmt.Printf("%s ,", port)
+			}
+		}
 		for _, node := range args.Nodes.Items {
 			nodePortMap[node.Name] = true
 			for _, addr := range node.Status.Addresses {

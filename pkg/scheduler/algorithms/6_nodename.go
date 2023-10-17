@@ -3,27 +3,30 @@ package algorithms
 import (
 	"fmt"
 	"strings"
+	"time"
 
 	extenderv1 "k8s.io/kube-scheduler/extender/v1"
 )
 
 func (a *AlgoManager) NodeName(args extenderv1.ExtenderArgs) (*extenderv1.ExtenderFilterResult, error) {
-	var nodeName []string = nil
+	time.Sleep(time.Millisecond)
+	var nodeName string
 	pod := args.Pod
 	fmt.Printf("pod add -> name : %s\n", pod.Name)
-	fmt.Println("** NodeName Algorithm **")
+	fmt.Print("** NodeName Algorithm **\n")
 
-	fmt.Println("pod spec node name :", pod.Spec.NodeName)
+	fmt.Print("pod spec node name :", pod.Labels["nodeName"], "\n")
 
 	// get node name
 	nodeList := args.Nodes.Items
 
 	for _, node := range nodeList {
-		strings.Compare(pod.Spec.NodeName, node.Name)
-		nodeName = append(nodeName, node.Name)
+		if strings.Compare(pod.Labels["nodeName"], node.Name) == 0 {
+			nodeName = node.Name
+		}
 	}
 
-	fmt.Printf("Selected Node(s) :", nodeName)
-
-	return &extenderv1.ExtenderFilterResult{NodeNames: &nodeName}, nil
+	fmt.Printf("Selected Node(s) : %s\n", nodeName)
+	time.Sleep(time.Millisecond)
+	return &extenderv1.ExtenderFilterResult{NodeNames: &[]string{nodeName}}, nil
 }

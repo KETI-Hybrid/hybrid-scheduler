@@ -15,15 +15,18 @@ func (a *AlgoManager) TaintToleration(args extenderv1.ExtenderArgs) (*extenderv1
 		if len(node.Spec.Taints) > 0 {
 			for _, taint := range node.Spec.Taints {
 				if taint.Effect == v1.TaintEffectNoSchedule {
+					fmt.Printf("%s : Exist\n", node.Name)
+					fmt.Println("Toleration match: False")
 					break
 				} else if taint.Effect == v1.TaintEffectPreferNoSchedule {
+					fmt.Printf("%s : Exist\n", node.Name)
+					fmt.Println("Toleration match: False")
 					break
-				} else {
-					nodeName = append(nodeName, node.Name)
 				}
 			}
 		} else {
-			continue
+			fmt.Printf("%s : None\n", node.Name)
+			nodeName = append(nodeName, node.Name)
 		}
 	}
 

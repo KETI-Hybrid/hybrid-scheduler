@@ -3,10 +3,11 @@ apiVersion: v1
 kind: Pod
 metadata:
   name: keti-application14
-  annotation: 
+  annotations: 
     schedulepolicy: selectspread
   labels:
     name: keti-application14
+    kind: deployment
 spec:
   imagePullSecrets: 
   - name: ketidevit2
@@ -23,3 +24,6 @@ spec:
       valueFrom:
         fieldRef:
           fieldPath: metadata.name
+    resources:
+      limits:
+        keti.hybrid/schedule: 1

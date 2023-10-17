@@ -3,10 +3,11 @@ apiVersion: v1
 kind: Pod
 metadata:
   name: keti-application6
-  annotation: 
+  annotations: 
     schedulepolicy: nodename
   labels:
     name: keti-application6
+    nodeName: hcp-worker1
 spec:
   imagePullSecrets: 
   - name: ketidevit2
@@ -23,3 +24,6 @@ spec:
       valueFrom:
         fieldRef:
           fieldPath: metadata.name
+    resources:
+      limits:
+        keti.hybrid/schedule: 1

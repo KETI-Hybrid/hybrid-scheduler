@@ -14,12 +14,16 @@ func (a *AlgoManager) OptimizationTime(args extenderv1.ExtenderArgs) (*extenderv
 	nodeName, minCnt := "", float64(2147483647)
 	for _, node := range args.Nodes.Items {
 		cntStr := node.Annotations["optimazationTime"]
-		lastTime, err := time.Parse(time.DateTime, cntStr)
+		if len(cntStr) == 0 {
+			continue
+		}
+		lastTime, err := time.Parse("2006-01-02_15_04_05", cntStr)
 		if err != nil {
 			klog.Errorln(err)
 		}
 
-		cnt := time.Since(lastTime).Seconds()
+		cnt := 0 - time.Since(lastTime).Seconds()
+		fmt.Printf("%s : %.0fs\n", node.Name, cnt)
 		if minCnt > cnt {
 			nodeName = node.Name
 			minCnt = cnt

@@ -12,7 +12,6 @@ import (
 type AlgoManager struct {
 	kubeClient kubernetes.Interface
 	ketiClient keticlient.Interface
-	algoMap    map[string]Algorithms
 }
 type Algorithms func(args extenderv1.ExtenderArgs) (*extenderv1.ExtenderFilterResult, error)
 

@@ -16,14 +16,18 @@ func (a *AlgoManager) NodeUnschedulable(args extenderv1.ExtenderArgs) (*extender
 	fmt.Println("** NodeUnschedulable Algorithm **")
 
 	for _, node := range nodeList {
-		for _, avail := range node.Spec.Taints {
-
-			if strings.Compare(avail.Key, "NoSchedule") == 0 {
-				unavailScheduleNode = append(unavailScheduleNode, node.Name)
-			} else {
-				availScheduleNode = append(availScheduleNode, node.Name)
+		if len(node.Spec.Taints) > 0 {
+			for _, avail := range node.Spec.Taints {
+				if strings.Compare(avail.Key, "NoSchedule") == 0 {
+					unavailScheduleNode = append(unavailScheduleNode, node.Name)
+				} else {
+					availScheduleNode = append(availScheduleNode, node.Name)
+				}
 			}
+		} else {
+			availScheduleNode = append(availScheduleNode, node.Name)
 		}
+
 	}
 
 	fmt.Println("Unschedulable node list :", unavailScheduleNode)
