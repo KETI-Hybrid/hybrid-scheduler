@@ -30,7 +30,7 @@ import (
 	"k8s.io/klog/v2"
 )
 
-//var version string
+//var version 
 
 var (
 	sher        *scheduler.Scheduler
