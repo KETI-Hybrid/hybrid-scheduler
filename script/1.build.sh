@@ -1,6 +1,6 @@
 #!/bin/bash
 docker_id="ketidevit2"
-controller_name="hybrid.hybrid-scheduler"
+controller_name="hybrid.hybrid-scheduler"  # hcp-scheduler
 export GO111MODULE=on
 # go mod vendor
 go build -o /root/workspace/hth/dev/hybrid-scheduler/docker/_output/bin/$controller_name -mod=vendor /root/workspace/hth/dev/hybrid-scheduler/cmd/main.go
