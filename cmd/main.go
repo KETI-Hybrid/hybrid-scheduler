@@ -46,6 +46,7 @@ var (
 )
 
 func init() {
+	// rootCmd.Flags().SortFlags = false
 	rootCmd.Flags().SortFlags = false
 	rootCmd.PersistentFlags().SortFlags = false
 
