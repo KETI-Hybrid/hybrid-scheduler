@@ -55,6 +55,7 @@ func init() {
 	rootCmd.Flags().StringVar(&config.SchedulerName, "scheduler-name", "", "the name to be added to pod.spec.schedulerName if not empty")
 	rootCmd.PersistentFlags().AddGoFlagSet(util.GlobalFlagSet())
 	rootCmd.AddCommand(version.VersionCmd)
+	
 }
 
 func start() {
