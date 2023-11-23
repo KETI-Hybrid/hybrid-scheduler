@@ -69,6 +69,7 @@ func start() {
 	router.POST("/bind", routes.Bind(sher))
 	router.POST("/webhook", routes.WebHookRoute())
 	//klog.Info("listen on ", config.HttpBind)
+	
 	if len(tlsCertFile) == 0 || len(tlsKeyFile) == 0 {
 		klog.Info("listen on HTTP ", config.HttpBind)
 		if err := http.ListenAndServe(config.HttpBind, router); err != nil {
