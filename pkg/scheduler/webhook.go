@@ -41,10 +41,7 @@ func NewWebHook() (*admission.Webhook, error) {
 	if err := clientgoscheme.AddToScheme(schema); err != nil {
 		return nil, err
 	}
-	decoder, err := admission.NewDecoder(schema)
-	if err != nil {
-		return nil, err
-	}
+	decoder, _ := admission.NewDecoder(schema)
 	wh := &admission.Webhook{Handler: &webhook{decoder: decoder}}
 	_ = wh.InjectLogger(klogr.New())
 	return wh, nil
@@ -62,17 +59,10 @@ func (h *webhook) Handle(_ context.Context, req admission.Request) admission.Res
 		klog.Errorln("pod has no containers")
 		return admission.Denied("pod has no containers")
 	}
-	//klog.V(1).Infof("hook %v pod %v/%v", req.UID, req.Namespace, req.Name)
-	fmt.Printf("hook %v pod %v/%v", req.UID, req.Namespace, req.Name)
 
 	if len(config.SchedulerName) > 0 {
 		pod.Spec.SchedulerName = config.SchedulerName
 	}
-	marshaledPod, err := json.Marshal(pod)
-	if err != nil {
-		klog.Errorln(err)
-		return admission.Errored(http.StatusInternalServerError, err)
-	}
-	klog.Infoln("Start Patch Response")
+	marshaledPod, _ := json.Marshal(pod)
 	return admission.PatchResponseFromRaw(req.Object.Raw, marshaledPod)
 }
