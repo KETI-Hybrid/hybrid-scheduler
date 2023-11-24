@@ -23,4 +23,4 @@
 
 
 
-kubectl delete -f /root/workspace/hth/dev/hybrid-scheduler/deploy/job
+kubectl delete -f ../dev/hybrid-scheduler/deploy/job
