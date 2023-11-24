@@ -17,6 +17,6 @@
 package config
 
 var (
-	HttpBind      string
+	CollectrIP    []string
 	SchedulerName string
 )
