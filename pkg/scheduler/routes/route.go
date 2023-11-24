@@ -17,12 +17,6 @@
 package routes
 
 import (
-	"bytes"
-	"encoding/json"
-	"fmt"
-	"io"
-	"net/http"
-
 	"hybrid-scheduler/pkg/scheduler"
 
 	"github.com/julienschmidt/httprouter"
@@ -38,9 +32,7 @@ func checkBody(w http.ResponseWriter, r *http.Request) {
 }
 
 func PredicateRoute(s *scheduler.Scheduler) httprouter.Handle {
-	klog.Infoln("Into Predicate Route outer func")
 	return func(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
-		klog.Infoln("Into Predicate Route inner func")
 		checkBody(w, r)
 
 		var buf bytes.Buffer
@@ -80,7 +72,6 @@ func PredicateRoute(s *scheduler.Scheduler) httprouter.Handle {
 }
 
 func Bind(s *scheduler.Scheduler) httprouter.Handle {
-	klog.Infoln("Into Bind outer func")
 	return func(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
 		var buf bytes.Buffer
 		body := io.TeeReader(r.Body, &buf)
@@ -112,10 +103,7 @@ func Bind(s *scheduler.Scheduler) httprouter.Handle {
 }
 
 func WebHookRoute() httprouter.Handle {
-	h, err := scheduler.NewWebHook()
-	if err != nil {
-		klog.Fatalf("new web hook error, %v", err)
-	}
+	h, _ := scheduler.NewWebHook()
 	return func(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
 		klog.Infof("Into webhookfunc")
 		h.ServeHTTP(w, r)
