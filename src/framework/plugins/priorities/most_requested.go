@@ -19,10 +19,10 @@ func (pl *MostRequested) PreScore(pod *ketiresource.Pod, clusterInfo *ketiresour
 
 	for _, node := range clusterInfo.Nodes {
 		nodeScore := mostRequestedScore(pod.RequestedResource.MilliCPU, node.AllocatableResource.MilliCPU)
-		// nodeScore += mostRequestedScore(pod.RequestedResource.Memory, node.AllocatableResource.Memory)
-		// nodeScore += mostRequestedScore(pod.RequestedResource.EphemeralStorage, node.AllocatableResource.EphemeralStorage)
-
+		nodeScore += mostRequestedScore(pod.RequestedResource.Memory, node.AllocatableResource.Memory)
+		nodeScore += mostRequestedScore(pod.RequestedResource.EphemeralStorage, node.AllocatableResource.EphemeralStorage)
 		node.NodeScore = nodeScore * weight
+
 		clusterScore += nodeScore
 	}
 	if !check {
