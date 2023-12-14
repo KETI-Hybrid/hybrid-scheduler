@@ -32,13 +32,12 @@ func (pl *Optimizationcount) PreScore(pod *ketiresource.Pod, clusterInfo *ketire
 		}
 		clusterScore += int64(cnt / 10)
 	}
-	omcplog.V(4).Info("Optimizationcount score = ", clusterScore)
+	// omcplog.V(4).Info("Optimizationcount score = ", clusterScore)
 	elapsedTime := time.Since(startTime)
-	omcplog.V(3).Infof("Optimizationcount Time [%v]", elapsedTime)
+	// omcplog.V(3).Infof("Optimizationcount Time [%v]", elapsedTime)
 	return clusterScore
 }
 func (pl *Optimizationcount) Score(pod *ketiresource.Pod, clusterInfo *ketiresource.Cluster, replicas int32, clustername string) int64 {
-
 	startTime := time.Now()
 	var clusterScore int64
 	max := 0
