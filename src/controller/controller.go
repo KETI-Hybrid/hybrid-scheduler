@@ -135,7 +135,7 @@ func (r *reconciler) JoinReconcile(newDeployment *resourcev1alpha1.OpenMCPDeploy
 
 }
 func (r *reconciler) Reconcile(req reconcile.Request) (reconcile.Result, error) {
-	// Fetch the OpenMCPDeployment instance
+
 	r.scheduler.Live = &r.live
 	newDeployment := &resourcev1alpha1.OpenMCPDeployment{}
 	err := r.live.Get(context.TODO(), req.NamespacedName, newDeployment)
@@ -173,7 +173,6 @@ func (r *reconciler) Reconcile(req reconcile.Request) (reconcile.Result, error) 
 				}
 			}
 			//allreschedcheck := false
-			//두조건이 같다면 전체 리스케줄링 따라서 아닌경우에만 처리해주면 됨
 			if int32(count) != temp && (lastspec.Replicas < newDeployment.Spec.Replicas) {
 				//allreschedcheck = true
 				extra_replicas := temp - int32(count)
@@ -184,7 +183,7 @@ func (r *reconciler) Reconcile(req reconcile.Request) (reconcile.Result, error) 
 				}
 
 				omcplog.V(5).Infof("  extra_replicas =>", extra_replicas)
-				//omcplog.V(0).Infof("  ClusterJoin Resource Get => [Name] : %v, [Namespace]  : %v", newDeployment.Name, newDeployment.Namespace)
+				omcplog.V(0).Infof("  ClusterJoin Resource Get => [Name] : %v, [Namespace]  : %v", newDeployment.Name, newDeployment.Namespace)
 				cluster_replicas_map, _ := r.scheduler.Scheduling(newDeployment, false, clusters)
 				if r.scheduler.SchdPolicy != "RR" {
 					for key, val := range cluster_replicas_map {

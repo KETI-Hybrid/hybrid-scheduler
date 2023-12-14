@@ -29,7 +29,7 @@ func (pl *Locationaffinity) PreScore(pod *ketiresource.Pod, clusterInfo *ketires
 	startTime := time.Now()
 	var clusterScore int64
 	clusterScore = 3
-
+	//
 	for _, node := range clusterInfo.Nodes {
 		// node.PreFilter = true
 		node_result := true
@@ -65,14 +65,11 @@ func (pl *Locationaffinity) Score(pod *ketiresource.Pod, clusterInfo *ketiresour
 	clusterScore = 3
 
 	for _, node := range clusterInfo.Nodes {
-		// node.PreFilter = true
+
 		node_result := true
 		for key, pod_values := range pod.Affinity {
 
-			// compare Node's Affinity and Pod's Affinity
 			if node_value, ok := node.Affinity[key]; ok {
-
-				// if node's affinity has pod's affinity, new deployment can be deploymented
 				if contains(pod_values, node_value) == false {
 					clusterScore += -1
 					node_result = false

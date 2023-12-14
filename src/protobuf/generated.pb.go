@@ -462,7 +462,6 @@ func (x *LBInfo) String() string {
 }
 
 func (*LBInfo) ProtoMessage() {}
-
 func (x *LBInfo) ProtoReflect() protoreflect.Message {
 	mi := &file_generated_proto_msgTypes[6]
 	if protoimpl.UnsafeEnabled && x != nil {

@@ -20,5 +20,6 @@ func (pl *Selectspread) Filter(newPod *ketiresource.Pod, clusterInfo *ketiresour
 	omcplog.V(4).Info("Selectspread true  ")
 	elapsedTime := time.Since(startTime)
 	omcplog.V(3).Infof("Selectspread [%v]", elapsedTime)
+	//filter algorithm
 	return true
 }
