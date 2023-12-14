@@ -52,6 +52,7 @@ func (pl *PodFitsHostPorts) Filter(newPod *ketiresource.Pod, clusterInfo *ketire
 		// newPod cannot be deployed, if one of the wantPorts is used
 		if fitsPorts(wantPorts, node) == false {
 			omcplog.V(4).Info("%s", ErrReason)
+			omcplog.V(4).Info("%s", ErrReason)
 			omcplog.V(4).Info("nodeports false ")
 			elapsedTime := time.Since(startTime)
 			omcplog.V(3).Infof("nodeports Time [%v]", elapsedTime)
