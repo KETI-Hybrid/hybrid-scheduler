@@ -31,7 +31,7 @@ func (pl *DRF) Filter(newPod *ketiresource.Pod, clusterInfo *ketiresource.Cluste
 		}
 		if node.AllocatableResource.MilliCPU < newPod.RequestedResource.MilliCPU {
 			omcplog.V(0).Infof("MilliCPU [%v]", node.AllocatableResource.MilliCPU)
-			// omcplog.V(0).Infof("------------CPU [%v]", newPod.RequestedResource.MilliCPU)
+			omcplog.V(0).Infof("------------CPU [%v]", newPod.RequestedResource.MilliCPU)
 			node_result = false
 		}
 		if node_result == true {
