@@ -17,9 +17,8 @@ func (pl *Selectspread) Name() string {
 
 func (pl *Selectspread) Filter(newPod *ketiresource.Pod, clusterInfo *ketiresource.Cluster, cm *clusterManager.ClusterManager) bool {
 	startTime := time.Now()
-
 	omcplog.V(4).Info("Selectspread true  ")
 	elapsedTime := time.Since(startTime)
-	omcplog.V(3).Infof("Selectspread [%v]", elapsedTime)
+	// omcplog.V(3).Infof("Selectspread [%v]", elapsedTime)
 	return true
 }
