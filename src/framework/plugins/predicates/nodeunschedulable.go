@@ -29,8 +29,8 @@ func (pl *Nodeunschedulable) Filter(newPod *ketiresource.Pod, clusterInfo *ketir
 		}
 
 	}
-	// omcplog.V(4).Info("Nodeunschedulable true  ")
-	// elapsedTime := time.Since(startTime)
-	// omcplog.V(3).Infof("Nodeunschedulable [%v]", elapsedTime)
+	omcplog.V(4).Info("Nodeunschedulable true  ")
+	elapsedTime := time.Since(startTime)
+	omcplog.V(3).Infof("Nodeunschedulable [%v]", elapsedTime)
 	return true
 }
