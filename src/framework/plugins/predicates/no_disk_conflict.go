@@ -40,7 +40,7 @@ func (pl *NoDiskConflict) Filter(newPod *ketiresource.Pod, clusterInfo *ketireso
 		}
 
 		if node_result {
-			// omcplog.V(4).Info("volumerestrictions true ")
+			omcplog.V(4).Info("volumerestrictions true ")
 			elapsedTime := time.Since(startTime)
 			omcplog.V(3).Infof("volumerestrictions Time [%v]", elapsedTime)
 			return true
