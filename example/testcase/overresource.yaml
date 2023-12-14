@@ -1,0 +1,23 @@
+apiVersion: openmcp.k8s.io/v1alpha1
+kind: OpenMCPDeployment
+metadata:
+  name: example-openmcpdeployment-overresource
+  namespace: openmcp
+spec:
+  replicas: 20
+  labels:
+      app: openmcp-nginx
+      test: "yes"
+  template:
+    spec:
+      template:
+        spec:
+        imagePullSecrets:
+        - name: regcred
+          containers:
+          - image: nginx
+            name: nginx
+            resources:
+              requests:
+                memory: "10Gi"
+                cpu: "10"

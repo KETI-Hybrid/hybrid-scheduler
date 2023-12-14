@@ -1,0 +1,28 @@
+apiVersion: openmcp.k8s.io/v1alpha1
+kind: OpenMCPDeployment
+metadata:
+  name: example-openmcpdeployment-affinity
+  namespace: openmcp
+spec:
+  replicas: 3
+  affinity: 
+    region: 
+      - GB
+#    zone: 
+#      - KR
+#      - CH
+  labels:
+      app: openmcp-nginx
+  template:
+    spec:
+      template:
+        spec:
+          imagePullSecrets:
+          - name: regcred
+          containers:
+          - image: nginx
+            name: nginx
+            resources:
+              requests:
+                memory: "100"
+                cpu: "0.5"

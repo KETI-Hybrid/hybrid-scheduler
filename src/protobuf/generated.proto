@@ -1,0 +1,72 @@
+syntax = 'proto3';
+
+package protobuf;
+
+option go_package = ".;protobuf";
+
+service RequestAnalysis {
+    rpc SendHASMinAnalysis (HASInfo) returns (ResponseHAS) {}
+    rpc SendHASMaxAnalysis (HASInfo) returns (ResponseHAS) {}
+    rpc SendLBAnalysis (LBInfo) returns (ResponseLB) {}
+    rpc SendNetworkAnalysis (NodeInfo) returns (ResponseNetwork) {}
+    rpc SendCPAAnalysis (CPADeployList) returns (ResponseCPADeployList) {}
+}
+
+message CPADeployList {
+    repeated CPADeployInfo CPADeployInfo = 1;
+}
+
+message CPADeployInfo {
+    string Name = 1;
+    string Namespace = 2;
+    int32  ReplicasNum = 3;
+    string CPAName = 4;
+    repeated string Clusters = 5;
+    int64 CpuRequest = 6;
+    int64 MemRequest = 7;
+}
+
+message ResponseCPADeployList {
+    repeated ResponseCPADeploy ResponseCPADeploy = 1;
+}
+
+message ResponseCPADeploy {
+    string Name = 1;
+    string Namespace = 2;
+    string CPAName = 3;
+    string PodState = 4;
+    string Action = 5;
+    string TargetCluster = 6;
+}
+
+message HASInfo {
+    string HPAName = 1;
+    string HPANamespace = 2;
+    string ClusterName = 3;
+    map<string,int32> HASRebalancingCount = 4;
+    map<string,int32> HPAMinORMaxReplicas = 5;
+    map<string,int32> HPACurrentReplicas = 6;
+}
+
+message ResponseHAS {
+    string TargetCluster = 1;
+}
+
+message LBInfo {
+    repeated string ClusterNameList = 1;
+    string ClientIP = 2;
+}
+
+message ResponseLB {
+    map<string,double> ScoreMap = 1;
+}
+
+message NodeInfo {
+    string ClusterName = 1;
+    string NodeName = 2;
+}
+
+message ResponseNetwork {
+    int64 RX = 1;
+    int64 TX = 2;
+}

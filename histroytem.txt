@@ -1,0 +1,1000 @@
+ 1014  ./2.create.sh 
+ 1015  ls
+ 1016  ./3.debug.sh 
+ 1017  ls
+ 1018  cd ..
+ 1019  ls
+ 1020  cd ..
+ 1021  ls
+ 1022  cd Public_OpenMCP
+ 1023  ls
+ 1024  cd crds/
+ 1025  ls
+ 1026  k delete -f CRD_OpenMCPCluster.yaml 
+ 1027  k create -f CRD_OpenMCPCluster.yaml 
+ 1028  k delete -f CRD_OpenMCPCluster.yaml 
+ 1029  vim CRD_OpenMCPCluster.yaml 
+ 1030  kubectl create -f CRD_OpenMCPCluster.yaml 
+ 1031  vim CRD_OpenMCPCluster.yaml 
+ 1032  vi CRD_OpenMCPCluster.yaml 
+ 1033  k delete -f CRD_OpenMCPCluster.yaml 
+ 1034  k create -f CRD_OpenMCPCluster.yaml 
+ 1035  vim CRD_OpenMCPCluster.yaml 
+ 1036  kubectl unjoin cluster2
+ 1037  cd ..
+ 1038  ls
+ 1039  cd openmcp-loadbalancing-controller/
+ 1040  ls
+ 1041  cd example/
+ 1042  ls
+ 1043  kubectl get pod --context cluster1 -A
+ 1044  kubectl get svc -A
+ 1045  ls
+ 1046  kubectl get pod -A
+ 1047  ls
+ 1048  cd ..
+ 1049  ./3.debug.sh 
+ 1050  ./4.delete.sh 
+ 1051  ./1.build.sh 
+ 1052  ls
+ 1053  ./2.create.sh 
+ 1054  ./3.debug.sh 
+ 1055  ls
+ 1056  ./4.delete.sh 
+ 1057  ls
+ 1058  ./1.build.sh 
+ 1059  ./4.delete.sh 
+ 1060  ./2.create.sh 
+ 1061  ls
+ 1062  ./3.debug.sh 
+ 1063  ls
+ 1064  ./4.delete.sh 
+ 1065  ./1.build.sh 
+ 1066  ./2.create.sh 
+ 1067  ./3.debug.sh 
+ 1068  ./4.delete.sh 
+ 1069  ./1.build.sh 
+ 1070  ./2.create.sh 
+ 1071  ./3.debug.sh 
+ 1072  ./1.build.sh 
+ 1073  ./2.create.sh 
+ 1074  ./4.delete.sh 
+ 1075  ./2.create.sh 
+ 1076  ./3.debug.sh 
+ 1077  ls
+ 1078  ./4.delete.sh 
+ 1079  ./1.build.sh 
+ 1080  ./4.delete.sh 
+ 1081  ./2.create.sh 
+ 1082  ./3.debug.sh 
+ 1083  ./1.build.sh 
+ 1084  ./4.delete.sh 
+ 1085  ./2.create.sh 
+ 1086  ls
+ 1087  ./3.debug.sh 
+ 1088  ./1.build.sh 
+ 1089  ./2.create.sh 
+ 1090  ./4.delete.sh 
+ 1091  ./2.create.sh 
+ 1092  ./3.debug.sh 
+ 1093  ./4.delete.sh 
+ 1094  ./1.build.sh 
+ 1095  ./2.create.sh 
+ 1096  ./3.debug.sh 
+ 1097  ./4.delete.sh 
+ 1098  ./1.build.sh 
+ 1099  ./2.create.sh 
+ 1100  ls
+ 1101  ./3.debug.sh 
+ 1102  ./4.delete.sh 
+ 1103  ./1.build.sh 
+ 1104  ls
+ 1105  ./2.create.sh 
+ 1106  ./3.debug.sh 
+ 1107  ./1.build.sh 
+ 1108  ks
+ 1109  ,.2
+ 1110  ./2.create.sh 
+ 1111  ./4.delete.sh 
+ 1112  ./2.create.sh 
+ 1113  ls
+ 1114  ./3.debug.sh 
+ 1115  ls
+ 1116  cd ..
+ 1117  ls
+ 1118  cd openmcp-cluster-manager/
+ 1119  ls
+ 1120  ./3.debug.sh 
+ 1121  k get pod -A
+ 1122  k exec -it openmcp-cluster-manager-759d88d9f9-x4x5r -n openmcp bash
+ 1123  ls
+ 1124  cd build/
+ 1125  ls
+ 1126  vim Dockerfile 
+ 1127  ls
+ 1128  cd ..
+ 1129  ls
+ 1130  cd build/
+ 1131  ls
+ 1132  cd bin/
+ 1133  ls
+ 1134  cd ..
+ 1135  ls
+ 1136  cd _output/
+ 1137  ls
+ 1138  bi
+ 1139  cd bin/
+ 1140  ls
+ 1141  cd ..
+ 1142  ls
+ 1143  cd ..
+ 1144  ls
+ 1145  cd src/
+ 1146  ls
+ 1147  cd ..
+ 1148  cd install_openmcp/
+ 1149  ls
+ 1150  cd member
+ 1151  ls
+ 1152  cd istio/
+ 1153  ls
+ 1154  vim istio_install.sh 
+ 1155  ls
+ 1156  cd ..
+ 1157  ls
+ 1158  cd ..
+ 1159  ls
+ 1160  cd ..
+ 1161  ls
+ 1162  cd openmcp-cluster-manager/
+ 1163  ls
+ 1164  cd build/
+ 1165  ls
+ 1166  vim Dockerfile 
+ 1167  w
+ 1168  ls
+ 1169  vim Dockerfile 
+ 1170  ls
+ 1171  vim Dockerfile 
+ 1172  ls
+ 1173  cd ..
+ 1174  ls
+ 1175  cd install_openmcp/
+ 1176  ls
+ 1177  cd member.back/
+ 1178  ls
+ 1179  cd istio/
+ 1180  ls
+ 1181  vim gen-eastwest-gateway.sh 
+ 1182  ls
+ 1183  cd ..
+ 1184  ls
+ 1185  cd ..
+ 1186  ls
+ 1187  l
+ 1188  ls
+ 1189  git pull origin master
+ 1190  ls
+ 1191  cd ..
+ 1192  ls
+ 1193  cd kubectl_plugin/
+ 1194  ls
+ 1195  cd install/
+ 1196  ls
+ 1197  vim install_kubectl_join 
+ 1198  cd ..
+ 1199  ls
+ 1200  vim kubectl-join 
+ 1201  ls
+ 1202  cd ..
+ 1203  ls
+ 1204  cd ..
+ 1205  ls
+ 1206  cd Public_OpenMCP
+ 1207  ls
+ 1208  cd install_openmcp/
+ 1209  ls
+ 1210  kubectl get openmcpcluster -A
+ 1211  ls
+ 1212  cd member
+ 1213  ls
+ 1214  cd ..
+ 1215  ls
+ 1216  cd ..
+ 1217  ls
+ 1218  cd kubectl_plugin/
+ 1219  ls
+ 1220  chmod 755 *
+ 1221  ls
+ 1222  cd install/
+ 1223  ls
+ 1224  vim install_kubectl_join 
+ 1225  cd ..
+ 1226  ls
+ 1227  cp kubectl-* /usr/local/bin
+ 1228  ls
+ 1229  kubectl unjoin cluster2
+ 1230  kubectl unjoin cluster1
+ 1231  kubectl get pod -A
+ 1232  kubectl get openmcpcluster -A
+ 1233  cd ..
+ 1234  ls
+ 1235  cd openmcp-cluster-manager/
+ 1236  ./3.debug.sh 
+ 1237  cd openmcp-cluster-manager/
+ 1238  kubectl get openmcpcluster -A
+ 1239  ls
+ 1240  cd ..
+ 1241  ls
+ 1242  cd install_openmcp/
+ 1243  ls
+ 1244  cd master
+ 1245  cd ..
+ 1246  ls
+ 1247  ./create.sh 
+ 1248  vim /etc/exports 
+ 1249  ls
+ 1250  NFS_OK2=$(grep -r \'$INIT_MEMBER_DIR\' /etc/exports)
+ 1251  echo $NFS_OK2 
+ 1252  INIT_MEMBER_DIR=`pwd`/member
+ 1253  NFS_OK2=$(grep -r \'$INIT_MEMBER_DIR\' /etc/exports)
+ 1254  echo $NFS_OK2 
+ 1255  $INIT_MEMBER_DIR/
+ 1256  NFS_OK2=$(grep -r $INIT_MEMBER_DIR /etc/exports)
+ 1257  if [ "" = "$NFS_OK2" ]; then   echo "Not found NFS Setting. Add Export '$INIT_MEMBER_DIR' in /etc/exports";   echo "$INIT_MEMBER_DIR *(rw,no_root_squash,sync,no_subtree_check)" >> /etc/exports; fi
+ 1258  ls
+ 1259  vi /etc/exports 
+ 1260  ls
+ 1261  ./create.sh 
+ 1262  command 
+ 1263  command -v pip
+ 1264  command -v pip2
+ 1265  command -v pip23
+ 1266  ls
+ 1267  cd ..
+ 1268  ls
+ 1269  cd openmcp-cluster-manager/
+ 1270  ls
+ 1271  ./3.debug.sh 
+ 1272  ls
+ 1273  cd ..
+ 1274  ls
+ 1275  cd install_openmcp/
+ 1276  ls
+ 1277  ./create.sh 
+ 1278  CONFFILE=settings.yaml
+ 1279  OMCP_INSTALL_TYPE=`yq -r .default.installType $CONFFILE`
+ 1280  INIT_MEMBER_DIR=`pwd`/member
+ 1281  NFS_OK=$(grep -r '/root/.kube' /etc/exports)
+ 1282  if [ "" = "$NFS_OK" ]; then   echo "Not found NFS Setting. Add Export '/root/.kube' in /etc/exports";   echo "/root/.kube *(rw,no_root_squash,sync,no_subtree_check)" >> /etc/exports; fi
+ 1283  NFS_OK2=$(grep -r $INIT_MEMBER_DIR /etc/exports)
+ 1284  if [ "" = "$NFS_OK2" ]; then   echo "Not found NFS Setting. Add Export '$INIT_MEMBER_DIR' in /etc/exports";   echo "$INIT_MEMBER_DIR *(rw,no_root_squash,sync,no_subtree_check)" >> /etc/exports; fi
+ 1285  NFS_OK3=$(grep -r '/home/nfs' /etc/exports)
+ 1286  if [ "" = "$NFS_OK3" ]; then   echo "Not found NFS Setting. Add Export '/home/nfs' in /etc/exports";   echo "/home/nfs *(rw,no_root_squash,sync,no_subtree_check)" >> /etc/exports; fi
+ 1287  exportfs -a
+ 1288  vim /etc/exports 
+ 1289  ./create.sh 
+ 1290  sed -i 's|REPLACE_INIT_MEMBER_DIR|'\"$INIT_MEMBER_DIR\"'|g' master/openmcp-cluster-manager/pv.yaml 
+ 1291  sed -i 's|REPLACE_OMCPIP|'\"$OMCP_IP\"'|g' master/openmcp-cluster-manager/pv.yaml
+ 1292  sed -i 's|REPLACE_OMCPIP|'\"$OMCP_IP\"'|g'master/openmcp-apiserver/pv.yaml
+ 1293  sed -i 's|REPLACE_INIT_MEMBER_DIR|'\"$INIT_MEMBER_DIR\"'|g' master/openmcp-cluster-manager/pv.yaml 
+ 1294  sed -i 's|REPLACE_OMCPIP|'\"$OMCP_IP\"'|g'master/openmcp-apiserver/pv.yaml
+ 1295  ls
+ 1296  ./create.sh 
+ 1297  ls
+ 1298  ./create.sh 
+ 1299  ls
+ 1300  cd master
+ 1301  ls
+ 1302  chmod 755 *.sh
+ 1303  ls
+ 1304  ./2.delete.sh 
+ 1305  ls
+ 1306  cd ..
+ 1307  ls
+ 1308  chmod 755 master/*.sh
+ 1309  chmod 755 member/istio/*.sh
+ 1310  ls
+ 1311  cd master
+ 1312  ls
+ 1313  ./1.create.sh 
+ 1314  ls
+ 1315  cd crds/
+ 1316  ls
+ 1317  k create -f .
+ 1318  ls
+ 1319  k create -f ../../../crds/
+ 1320  ls
+ 1321  vim CRD_OpenMCPCluster.yaml 
+ 1322  ls
+ 1323  rm -rf ./*
+ 1324  ls
+ 1325  cp ../../../crds/* ./
+ 1326  ls
+ 1327  kubectl get openmcpcluster -A
+ 1328  ls
+ 1329  k delete -f CRD_OpenMCPCluster.yaml 
+ 1330  k create -f CRD_OpenMCPCluster.yaml 
+ 1331  kubectl get openmcpcluster -A
+ 1332  cd ..
+ 1333  ls
+ 1334  cd ..
+ 1335  ls
+ 1336  cd ..
+ 1337  cd openmcp-cluster-manager/
+ 1338  ./1.build.sh 
+ 1339  ls
+ 1340  ./2.create.sh 
+ 1341  ./4.delete.sh 
+ 1342  ./2.create.sh 
+ 1343  kubectl get openmcpcluster
+ 1344  kubectl get openmcpcluster -A
+ 1345  watch kubectl get openmcpcluster -A
+ 1346  cd ..
+ 1347  cd openmcp-loadbalancing-controller/
+ 1348  ls
+ 1349  ./3.debug.sh 
+ 1350  k get vs -A
+ 1351  k get vs -n bookinfo -o yaml
+ 1352  ./3.debug.sh 
+ 1353  k get vs -A
+ 1354  k get vs -A -o yaml
+ 1355  k get dr -A
+ 1356  k get dr -A -o yaml
+ 1357  k get dr -n bookinfo
+ 1358  k get dr -n bookinfo reviews
+ 1359  k get dr -n bookinfo reviews -o yaml
+ 1360  cd ..
+ 1361  cd openmcp-cluster-manager/
+ 1362  ls
+ 1363  ./3.debug.sh 
+ 1364  kubectl get deploy --context cluster1 -n bookinfo productpage-v1 -o yaml
+ 1365  k get dr
+ 1366  k get dr -A
+ 1367  k get dr -A -o yaml
+ 1368  cd ..
+ 1369  cd openmcp-policy-engine/
+ 1370  ls
+ 1371  cd deploy/
+ 1372  ls
+ 1373  cd policy/
+ 1374  ls
+ 1375  vim lbPolicy.yaml 
+ 1376  k delete -f lbPolicy.yaml 
+ 1377  k create -f lbPolicy.yaml 
+ 1378  k get svc -A
+ 1379  cd ..
+ 1380  ls
+ 1381  cd 
+ 1382  ls
+ 1383  cd workspace/
+ 1384  ls
+ 1385  cd create_cluster/
+ 1386  ls
+ 1387  vim create_federation.sh 
+ 1388  ls
+ 1389  vim 2m
+ 1390  ls
+ 1391  vim 2.master_init.sh 
+ 1392  k delete -f calico.yaml 
+ 1393  k create -f kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml
+ 1394  kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml
+ 1395  k get pod -A
+ 1396  watch kubectl get pod -A
+ 1397  ls
+ 1398  vim 2.master_init.sh 
+ 1399  k get pod -A
+ 1400  kubectl describe pod -n openmcp openmcp-loadbalancing-controller-5c7486bc5d-jmxgw
+ 1401  ls
+ 1402  ./0.reset.sh 
+ 1403  k get pod -A
+ 1404  ls
+ 1405  ./2.master_init.sh 
+ 1406  ls
+ 1407  kubectl get pod -A
+ 1408  ls
+ 1409  ./6.install_fedaration.sh 
+ 1410  ls
+ 1411  reboot
+ 1412  kubectl get pod -A
+ 1413  watch kubectl get pod -A
+ 1414  cd workspace/usr/kch/openmcp/Public_OpenMCP
+ 1415  ls
+ 1416  cd openmcp-resource-controller/
+ 1417  ls
+ 1418  cd de
+ 1419  ls
+ 1420  cd openmcp-deployment-controller/
+ 1421  ls
+ 1422  ./1.build.sh 
+ 1423  ls
+ 1424  cd ..
+ 1425  ls
+ 1426  cd openmcp-ingress-controller/
+ 1427  ls
+ 1428  ./1.build.sh 
+ 1429  ls
+ 1430  cd ..
+ 1431  ls
+ 1432  cd openmcp-namespace-controller/
+ 1433  ls
+ 1434  ./1.build.sh 
+ 1435  ls
+ 1436  cd ..
+ 1437  ls
+ 1438  cd openmcp-job-controller/
+ 1439  ./1.build.sh 
+ 1440  vim 1.build.sh 
+ 1441  ls
+ 1442  cd ..
+ 1443  ls
+ 1444  cd openmcp-service-controller/
+ 1445  ls
+ 1446  ./1.build.sh 
+ 1447  ls
+ 1448  cd ..
+ 1449  ls
+ 1450  cd openmcp-job-controller/
+ 1451  ls
+ 1452  ./1.build.sh 
+ 1453  ping 10.0.6.1
+ 1454  ping www.google.com
+ 1455  ifconfig
+ 1456  ls
+ 1457  ping 10.0.6.1
+ 1458  ping 10.0.6.31
+ 1459  ping www.google.com
+ 1460  ifconfig
+ 1461  swapoff -a
+ 1462  exit
+ 1463  l
+ 1464  kubectl get pod -A
+ 1465  ls
+ 1466  swapoff -a
+ 1467  ls
+ 1468  cd workspace/
+ 1469  ls
+ 1470  kubectl get pod -A
+ 1471  systemctl status kubelet
+ 1472  kubectl get pod -A
+ 1473  systemctl status kubelet
+ 1474  kubectl get pod -A
+ 1475  root@openmcp-master:~/workspace# kubectl get pod -A
+ 1476  kubectl cluster-info
+ 1477  kubectl get pod -A
+ 1478  vim ~/.kube/config
+ 1479  systemctl kubelet status
+ 1480  systemctl status kubelet
+ 1481  systemctl restart kubelet
+ 1482  kubectl get pod -A
+ 1483  systemctl restart kubelet
+ 1484  systemctl status kubelet
+ 1485  kubectl get pod -A
+ 1486  systemctl status kubelet
+ 1487  kubectl get pod -A
+ 1488  systemctl status kubelet
+ 1489  kubectl get pod -A
+ 1490  vim /etc/hosts
+ 1491  vim /etc/resolv.conf 
+ 1492  ping 8.8.8.8
+ 1493  sudo -i
+ 1494  strace -eopenat kubectl version
+ 1495  kubectl get pod -A
+ 1496  systemctl status kubelet
+ 1497  vim /etc/fstab
+ 1498  ls
+ 1499  kubectl get pod -A
+ 1500  ls
+ 1501  cd create_cluster/
+ 1502  ls
+ 1503  vim delete_federation.sh 
+ 1504  helm delete --purge kubefed
+ 1505  helm delete kubefed
+ 1506  helm list
+ 1507  helm
+ 1508  ls
+ 1509  ./6.install_fedaration.sh 
+ 1510  k get pod -A
+ 1511  k describe pod -A
+ 1512  k describe pod -A -o wide
+ 1513  k get pod -A -o wide
+ 1514  kubectl describe pod -n openmcp tiller-deploy-86494fbdff-s6hcd 
+ 1515  kubectl describe pod -n kube-system tiller-deploy-86494fbdff-s6hcd 
+ 1516  ls
+ 1517  ./0.reset.sh 
+ 1518  ls
+ 1519  ./2.master_init.sh 
+ 1520  kubectl get pod -A
+ 1521  ls
+ 1522  ./6.install_fedaration.sh 
+ 1523  k get pdo -A
+ 1524  k get po -A
+ 1525  ls
+ 1526  vim ~/.bashrc
+ 1527  vim ~/.kube/config
+ 1528  ls
+ 1529  cd ..
+ 1530  ls
+ 1531  cd usr/kch/openmcp/Public_OpenMCP
+ 1532  ls
+ 1533  cd install_openmcp/
+ 1534  ls
+ 1535  ./create.sh 
+ 1536  ls
+ 1537  cd master
+ 1538  ls
+ 1539  ./1.create.sh 
+ 1540  kubectl get pod -A
+ 1541  kubectl describe pod -n openmcp influxdb-7f7cdf959c-nc4l9
+ 1542  k get pv
+ 1543  k get pvc -A
+ 1544  ls
+ 1545  k get pod -A
+ 1546  cd ..
+ 1547  cd openmcp-metric-collector/master/
+ 1548  ./3.debug.sh 
+ 1549  k get pod -A
+ 1550  kubectl join cluster1
+ 1551  k get pod -A
+ 1552  cd ..
+ 1553  cd openmcp-cluster-manager/
+ 1554  ls
+ 1555  ./3.debug.sh 
+ 1556  ls
+ 1557  cd ..
+ 1558  cd openmcp-n
+ 1559  cd openmcp-na
+ 1560  ls
+ 1561  cd openmcp-resource-controller/openmcp-namespace-controller/
+ 1562  ls
+ 1563  ./3.debug.sh 
+ 1564  ls
+ 1565  ./4.delete.sh 
+ 1566  ./1.build.sh 
+ 1567  ./2.create.sh 
+ 1568  ./3.debug.sh 
+ 1569  ./1.build.sh 
+ 1570  ls
+ 1571  ./2.create.sh 
+ 1572  ./4.delete.sh 
+ 1573  ./2.create.sh 
+ 1574  ls
+ 1575  ./3.debug.sh 
+ 1576  ./4.delete.sh 
+ 1577  ./1.build.sh 
+ 1578  ls
+ 1579  ./4.delete.sh 
+ 1580  ./2.create.sh 
+ 1581  ./3.debug.sh 
+ 1582  ./4.delete.sh 
+ 1583  ./1.build.sh 
+ 1584  ls
+ 1585  ./2.create.sh 
+ 1586  ./3.debug.sh 
+ 1587  ls
+ 1588  kubectl join cluster1
+ 1589  cd workspace/usr/kch/openmcp/Public_OpenMCP
+ 1590  ls
+ 1591  cd openmcp-apiserver/
+ 1592  ls
+ 1593  cd example/
+ 1594  ls
+ 1595  cd ce
+ 1596  ls
+ 1597  cd delete/
+ 1598  ls
+ 1599  vim delete_deploy.sh 
+ 1600  cd ..
+ 1601  ls
+ 1602  cd get/
+ 1603  ls
+ 1604  vim get_api.sh 
+ 1605  ls
+ 1606  vim get_cluster.sh 
+ 1607  ls
+ 1608  vim get_deploy.sh 
+ 1609  ls
+ 1610  vim get_node.sh 
+ 1611  ls
+ 1612  vim get_token.sh 
+ 1613  ls
+ 1614  r server.crt 
+ 1615  rm server.crt 
+ 1616  ls
+ 1617  cd ..
+ 1618  ls
+ 1619  cd migration/
+ 1620  ls
+ 1621  vim post_migration.sh 
+ 1622  ls
+ 1623  cd ..
+ 1624  cd post/
+ 1625  ls
+ 1626  vim post_deploy.sh 
+ 1627  cd ..
+ 1628  cd openmcp-loadbalancing-controller/
+ 1629  ls
+ 1630  cd exa
+ 1631  cd example/
+ 1632  ls
+ 1633  ./4.delete.sh 
+ 1634  ./1.namespace.sh 
+ 1635  k get ns
+ 1636  ./2.deploy.sh 
+ 1637  ./3.openmcp.sh 
+ 1638  ls
+ 1639  ./4.delete.sh 
+ 1640  k get
+ 1641  ./1.namespace.sh 
+ 1642  k get ns
+ 1643  k get ons
+ 1644  k get ns
+ 1645  k get ns --context cluster1
+ 1646  k get ns --context cluster2
+ 1647  k get ns --context cluster1
+ 1648  k get ns
+ 1649  ls
+ 1650  ./4.delete.sh 
+ 1651  ./1.namespace.sh 
+ 1652  k get ns
+ 1653  k get ns --context cluster1
+ 1654  k get ns --context cluster2
+ 1655  ls
+ 1656  ./2.deploy.sh 
+ 1657  ls
+ 1658  ./3.openmcp.sh 
+ 1659  k get vs -A
+ 1660  k get ovs -A
+ 1661  k get vs -A
+ 1662  k get vs -A -o yaml
+ 1663  k get dnsendpoint -A
+ 1664  k get openmcpdnsendpoint -A
+ 1665  k get openmcpdnsendpoint -A -o yaml
+ 1666  ls
+ 1667  k get openmcpservice -A
+ 1668  k get openmcpservice -A -o yaml
+ 1669  ls
+ 1670  vim 2.deploy.sh 
+ 1671  k get svc -A --context cluster1
+ 1672  k get svc -A --context cluster2
+ 1673  ls
+ 1674  k get openmcpdnsrecord -A
+ 1675  k get openmcpservicednsrecord -A
+ 1676  k get openmcpservicednsrecord -n bookinfo productpage
+ 1677  k get openmcpservicednsrecord -n bookinfo productpage -o yaml
+ 1678  ls
+ 1679  vim 2.deploy.sh 
+ 1680  k delete osvc productpage -n bookinfpo
+ 1681  k delete osvc productpage -n bookinfo
+ 1682  ./2.deploy.sh 
+ 1683  kubectl unjoin cluster2
+ 1684  ls
+ 1685  vim 3.openmcp.sh 
+ 1686  k get vs
+ 1687  k get vs -A
+ 1688  k get vs -A -o yaml
+ 1689  openmcp join cluster2
+ 1690  kubectl join cluster2
+ 1691  k delete odeploy -n bookinfo productpage-v1
+ 1692  ls
+ 1693  ./2.deploy.sh 
+ 1694  ls
+ 1695  k get svc -A --context cluster1
+ 1696  k delete svc -n bookinfo productpage
+ 1697  k delete svc -n bookinfo productpage --context cluster1
+ 1698  k delete svc -n bookinfo productpage
+ 1699  k get svc -A --context cluster1
+ 1700  k delete svc -n bookinfo details
+ 1701  k delete svc -n bookinfo details --context cluster1
+ 1702  k delete svc -n bookinfo reviews  --context cluster1
+ 1703  k get deploy -A
+ 1704  k get deploy -A --context cluster1
+ 1705  k delete deploy -n bookinfo details-v1
+ 1706  k delete deploy -n bookinfo details-v1 --context cluster1
+ 1707  k delete deploy -n bookinfo reviews-v1 --context cluster1
+ 1708  ./4.delete.sh 
+ 1709  ./1.namespace.sh 
+ 1710  k get ns
+ 1711  k get ns --context cluster1
+ 1712  k get ns --context cluster2
+ 1713  k get ns
+ 1714  ls
+ 1715  ./2.deploy.sh 
+ 1716  ./3.openmcp.sh 
+ 1717  ls
+ 1718  cd ..
+ 1719  ls
+ 1720  cd opdn
+ 1721  cd openmcp-dns-controller/
+ 1722  ls
+ 1723  cd example/
+ 1724  ls
+ 1725  vim service-example/
+ 1726  cd service-example/
+ 1727  ls
+ 1728  vim domain.yaml 
+ 1729  ls
+ 1730  vim openmcpservice.yaml 
+ 1731  vim serviceDnsRecord.yaml 
+ 1732  ls
+ 1733  cd ..
+ 1734  ls
+ 1735  cd ..
+ 1736  ls
+ 1737  cd openmcp-loadbalancing-controller/
+ 1738  ls
+ 1739  cd src/
+ 1740  ls
+ 1741  cd ..
+ 1742  c dde
+ 1743  ls
+ 1744  cd deploy/
+ 1745  ls
+ 1746  vim service.yaml 
+ 1747  k delete -f service.yaml 
+ 1748  k create -f service.yaml 
+ 1749  ls
+ 1750  vim service.yaml 
+ 1751  ls
+ 1752  k create -f service
+ 1753  k create -f service.yaml 
+ 1754  k delete .f service.yaml 
+ 1755  k delete -f service.yaml 
+ 1756  k create -f service.yaml 
+ 1757  ls
+ 1758  vim service.yaml 
+ 1759  k delete -f service.yaml 
+ 1760  k create -f service.yaml 
+ 1761  vim service.yaml 
+ 1762  k delete -f service.yaml 
+ 1763  k create -f service.yaml 
+ 1764  vim service.yaml 
+ 1765  k delete -f service.yaml 
+ 1766  k create -f service.yaml 
+ 1767  ls
+ 1768  vim service.yaml 
+ 1769  k delete -f service.yaml 
+ 1770  k create -f service.yaml 
+ 1771  vim service.yaml 
+ 1772  k delete -f service.yaml 
+ 1773  k create -f service.yaml 
+ 1774  cd ..
+ 1775  ls
+ 1776  cd influxdb/
+ 1777  ls
+ 1778  cd deploy/
+ 1779  ls
+ 1780  vim service.yaml 
+ 1781  k delete -f service.yaml .
+ 1782  k delete -f service.yaml 
+ 1783  k create -f service.yaml .
+ 1784  k create -f service.yaml 
+ 1785  ls
+ 1786  cd ..
+ 1787  ls
+ 1788  cd ..
+ 1789  ls
+ 1790  cd openmcp-analytic-engine/
+ 1791  ls
+ 1792  cd openmcp-analytic-engine/
+ 1793  ls
+ 1794  vim deploy/service.yaml 
+ 1795  k delete -f deploy/service.yaml 
+ 1796  k create -f deploy/service.yaml 
+ 1797  ls
+ 1798  cd ..
+ 1799  ls
+ 1800  cd openmcp-cluster-manager/
+ 1801  ls
+ 1802  cd deploy/
+ 1803  ls
+ 1804  vim service.yaml 
+ 1805  ls
+ 1806  k delete -f service.yaml 
+ 1807  k create -f service.yaml 
+ 1808  ls
+ 1809  cd ..
+ 1810  ls
+ 1811  cd ..
+ 1812  ls
+ 1813  cd openmcp-metric-collector/
+ 1814  ls
+ 1815  cd master/
+ 1816  ls
+ 1817  cd deploy/
+ 1818  ls
+ 1819  vim service.yaml 
+ 1820  k delete -f service.yaml 
+ 1821  k create -f service.yaml 
+ 1822  ls
+ 1823  cd ..
+ 1824  cd member/
+ 1825  ls
+ 1826  cd ..
+ 1827  ls
+ 1828  cd install_openmcp/
+ 1829  ls
+ 1830  vim settings.yaml 
+ 1831  ls
+ 1832  cd ..
+ 1833  ls
+ 1834  cd openmcp-apiserver/
+ 1835  ls
+ 1836  vim deploy/service.yaml 
+ 1837  ls
+ 1838  cd ..
+ 1839  ls
+ 1840  cd openmcp-analytic-engine/
+ 1841  ls
+ 1842  cd deploy/
+ 1843  ls
+ 1844  vim service.yaml 
+ 1845  k delete -f service
+ 1846  k delete -f service.yaml 
+ 1847  k create -f service.yaml 
+ 1848  vim service.yaml 
+ 1849  ls
+ 1850  vim service.yaml 
+ 1851  ls
+ 1852  cd ..
+ 1853  ls
+ 1854  k get odeploy -A
+ 1855  k get deploy -A --context cluster1
+ 1856  k delete deploy -n bookinfo productpage-v1 --context cluster1
+ 1857  ls
+ 1858  k get deploy -A --context cluster1
+ 1859  k delete deploy productpage-v1 -n bookinfo --context cluster1
+ 1860  k get deploy -A --context cluster1
+ 1861  k get odeploy -A
+ 1862  k get odeploy productpage-v1 -n bookinfo -o yaml
+ 1863  k get kubefedcluster -A
+ 1864  k get openmcpcluster -A
+ 1865  k get kubefedcluster -A
+ 1866  k get svc -A
+ 1867  k get kubefedcluster -A
+ 1868  k get openmcpcluster -A
+ 1869  ls
+ 1870  k get pod -A
+ 1871  kubectl get kubefedcluster -A
+ 1872  kubectl get openmcpcluster -A
+ 1873  ls
+ 1874  cd workspace/usr/kch/openmcp/
+ 1875  ls
+ 1876  cd Public_OpenMCP
+ 1877  ls
+ 1878  cd crds/
+ 1879  ls
+ 1880  vim CRD_OpenMCPCluster.yaml 
+ 1881  k apply -f CRD_OpenMCPCluster.yaml 
+ 1882  k get openmcpcluster -A
+ 1883  kubectl unjoin cluster1
+ 1884  k edit openmcpcluster -n openmcp cluster2
+ 1885  ls
+ 1886  k get openmcpcluster -A
+ 1887  watch kubectl get openmcpcluster -A
+ 1888  k edit openmcpcluster -n openmcp cluster2
+ 1889  ls
+ 1890  k get pod -A
+ 1891  k get pod -A --context cluster1
+ 1892  k get pod -A --context cluster2
+ 1893  k get pod -A --context cluster1
+ 1894  k get ns -A --context cluster1
+ 1895  kubectl join cluster2
+ 1896  kubectl get pod -A
+ 1897  kubectl get pod -A --context cluster1
+ 1898  kubectl get openmcpcluster -A
+ 1899  watch kubectl get openmcpcluster -A
+ 1900  ls
+ 1901  cd ..
+ 1902  cd openmcp-loadbalancing-controller/
+ 1903  ls
+ 1904  ./3.debug.sh 
+ 1905  ls
+ 1906  cd ..
+ 1907  ls
+ 1908  cd metallb/
+ 1909  ls
+ 1910  vim metallb.yaml 
+ 1911  k get svc -A
+ 1912  ls
+ 1913  vim configmap.yaml 
+ 1914  ls
+ 1915  cd ..
+ 1916  ls
+ 1917  cd metallb/
+ 1918  ls
+ 1919  vim configmap.yaml 
+ 1920  k get cm -A
+ 1921  k get cm -n metallb-system config
+ 1922  k get cm -n metallb-system config -o yaml
+ 1923  ls
+ 1924  vim cluster1_configmap.yaml 
+ 1925  vim configmap.yaml 
+ 1926  ls
+ 1927  k delete -f configmap.yaml 
+ 1928  ls
+ 1929  k delete -f metallb.yaml 
+ 1930  ls
+ 1931  k create -f metallb.yaml 
+ 1932  ls
+ 1933  k create -f configmap.yaml 
+ 1934  ls
+ 1935  vim configmap.yaml 
+ 1936  ls
+ 1937  vim metallb.yaml 
+ 1938  ls
+ 1939  vim configmap.yaml 
+ 1940  ls
+ 1941  kubectl get pod -o wide
+ 1942  kubectl get pod -o wide -A
+ 1943  curl 10.244.1.30
+ 1944  ping 10.244.1.30
+ 1945  ping 10.244.1.31
+ 1946  ping 10.244.1.32
+ 1947  k get svc -n openmcp --context cluster1
+ 1948  k get svc -A openmcp --context cluster1
+ 1949  k get svc -A --context cluster1
+ 1950  k get deploy --context cluster1
+ 1951  k get deploy --context cluster1 -n bookinfo
+ 1952  k delete deploy --context cluster1 -n bookinfo productpage-v1
+ 1953  k get deploy --context cluster1 -n bookinfo productpage-v1
+ 1954  k delete odeploy --context cluster1 -n bookinfo productpage-v1
+ 1955  k delete odeploy -n bookinfo productpage-v1
+ 1956  k delete deploy --context cluster1 -n bookinfo productpage-v1
+ 1957  ls
+ 1958  cd workspace/usr/kch/openmcp/
+ 1959  ls
+ 1960  cd Public_OpenMCPl
+ 1961  cd Public_OpenMCP
+ 1962  ls
+ 1963  ls
+ 1964  cd workspace/usr/kch/openmcp/Public_OpenMCP
+ 1965  ls
+ 1966  cd openmcp-resource-controller/openmcp-deployment-controller/
+ 1967  ls
+ 1968  ./1.build.sh 
+ 1969  ./4.delete.sh 
+ 1970  ./2.create.sh 
+ 1971  ls
+ 1972  cd ..
+ 1973  cd openmcp-loadbalancing-controller/
+ 1974  ls
+ 1975  cd example/
+ 1976  ls
+ 1977  vim 2.deploy.sh 
+ 1978  ./2.deploy.sh 
+ 1979  vim 2.deploy.sh 
+ 1980  ./2.deploy.sh 
+ 1981  vim 2.deploy.sh 
+ 1982  ./4.delete.sh 
+ 1983  ./1.namespace.sh 
+ 1984  ./2.deploy.sh 
+ 1985  ls
+ 1986  ./2.deploy.sh 
+ 1987  ls
+ 1988  ./3.openmcp.sh 
+ 1989  ./4.delete.sh 
+ 1990  ./1.namespace.sh 
+ 1991  ./2.deploy.sh 
+ 1992  k get ns --context cluster1
+ 1993  k get ns --context cluster2
+ 1994  ./2.deploy.sh 
+ 1995  watch kubectl get pod --context cluster1 -n bookinfo 
+ 1996  watch kubectl get pod --context cluster2 -n bookinfo 
+ 1997  watch kubectl get pod --context cluster1 -n bookinfo 
+ 1998  watch kubectl get pod --context cluster2 -n bookinfo 
+ 1999  watch kubectl get all --context cluster2 -n bookinfo 
+ 2000  ls
+ 2001  cd openmcp-scheduler/
+ 2002  ls
+ 2003  ./3.debug.sh 
+ 2004  ls
+ 2005  ./3.debug.sh 
+ 2006  ls
+ 2007  ./4.delete.sh 
+ 2008  ./2.create.sh 
+ 2009  ls
+ 2010  ./3.debug.sh 
+ 2011  k get pod --context cluster1 -n openmcp
+ 2012  history
+ 2013  history >>histroytem.txt

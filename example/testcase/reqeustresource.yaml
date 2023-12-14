@@ -1,0 +1,24 @@
+apiVersion: openmcp.k8s.io/v1alpha1
+kind: OpenMCPDeployment
+metadata:
+  name: example-openmcpdeployment-requestresource
+  namespace: openmcp
+spec:
+  replicas: 5
+  labels:
+      app: openmcp-nginx
+      test: "yes"
+  template:
+    spec:
+      template:
+        spec:
+        imagePullSecrets:
+        - name: regcred
+          containers:
+          - image: nginx
+            name: nginx
+            resources:
+              requests:
+                memory: "100"
+                cpu: "0.5"
+                nvidia.com/gpu: "0.5"

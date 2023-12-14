@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: example-kbuedeployment1
+  namespace: default
+spec:
+  replicas: 3
+  labels:
+    app: nginx
+    #test: "yes"
+  template:
+    spec:
+      template:
+        spec:
+          containers:
+            - image: nginx
+              name: nginx
+              resources:
+                requests:
+                  memory: "10Mi"
+                  cpu: 0.1
+            

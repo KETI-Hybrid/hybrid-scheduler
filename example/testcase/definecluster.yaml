@@ -1,0 +1,25 @@
+apiVersion: openmcp.k8s.io/v1alpha1
+kind: OpenMCPDeployment
+metadata:
+  name: example-openmcpdeployment-definecluster
+  namespace: openmcp
+spec:
+  replicas: 1
+  clusters:
+  - "cluster1"
+  - "cluster2"
+  labels:
+      app: openmcp-nginx
+  template:
+    spec:
+      template:
+        spec:
+          imagePullSecrets:
+          - name: regcred
+          containers:
+          - image: nginx
+            name: nginx
+            resources:
+              requests:
+                memory: "10Mi"
+                cpu: "0.1"

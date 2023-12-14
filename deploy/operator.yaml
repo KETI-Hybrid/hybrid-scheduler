@@ -1,0 +1,48 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hcp-scheduler
+  namespace: hcp
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: hcp-scheduler
+  template:
+    metadata:
+      labels:
+        name: hcp-scheduler
+    spec:
+      serviceAccountName: hcp-scheduler
+      imagePullSecrets:
+        - name: "regcred"
+      containers:
+        - name: hcp-scheduler
+          # Replace this with the built image name
+          image: ketidevit2/hcp-scheduler:v0.0.1
+          command:
+          - hcp-scheduler
+          imagePullPolicy: Always
+          env:
+            - name: WATCH_NAMESPACE
+              #value: ""
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.namespace
+            - name: POD_NAME
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.name
+            - name: GRPC_SERVER
+              value: "10.0.5.52"
+            - name: GRPC_PORT
+              value: "30001"
+            - name: OPERATOR_NAME
+              value: "hcp-scheduler"
+      tolerations:
+        - key: node.kubernetes.io/not-ready
+          effect: NoExecute
+          tolerationSeconds: 0
+        - key: node.kubernetes.io/unreachable
+          effect: NoExecute
+          tolerationSeconds: 0

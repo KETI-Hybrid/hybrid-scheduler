@@ -1,0 +1,27 @@
+apiVersion: openmcp.k8s.io/v1alpha1
+kind: OpenMCPDeployment
+metadata:
+  name: example-openmcpdeployment24
+  namespace: openmcp
+spec:
+  replicas: 1
+  affinity: 
+    region: 
+      - AS
+    zone: 
+      - KR
+      - CH
+  labels:
+      app: openmcp-nginx
+      test: "yes"
+  template:
+    spec:
+      template:
+        spec:
+          containers:
+          - image: nginx
+            name: nginx
+            resources:
+              requests:
+                memory: "10Mi"
+                cpu: "0.1"

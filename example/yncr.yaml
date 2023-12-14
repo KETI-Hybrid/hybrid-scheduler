@@ -1,0 +1,40 @@
+apiVersion: openmcp.k8s.io/v1alpha1
+kind: OpenMCPDeployment
+metadata:
+  name: scheduler-openmcpdeployment
+  namespace: openmcp
+spec:
+  replicas: 3
+  affinity: 
+    region: 
+      - asia
+    zone: 
+      - korea
+      - china
+  labels:
+    app: openmcp-nginx
+  template:
+    spec:
+      template:
+        spec:
+          containers:
+          - image: nginx
+            name: nginx
+            ports:
+            - containerPort: 80
+            volumeMounts:
+            - mountPath: /test-ebs
+              name: test-volume
+            resources:
+              requests:        
+                memory: 1Gi
+                cpu: 1.5 
+                ephemeral-storage: 1Gi
+              needs:
+                gpu: true
+                hba: false
+          volumes:
+          - name: test-volume
+            awsElasticBlockStore : 
+              volumeID: vol-688d7099
+              fsType: ext4
